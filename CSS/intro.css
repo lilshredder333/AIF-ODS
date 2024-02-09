@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    background-image: url('../IMG/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#bg-pic{
+    position: absolute; 
+    z-index: -2;
+    size-adjust: 100%;
+}
+
+#personaje{
+    width: 28%;
+    position: absolute;
+    top: 30%; 
+    left: 50%;
+
+}
+
+#personaje img{
+    width: 100%;
+}
+
+#bocadillo{
+    width: 28%;
+    position: absolute;
+    border: solid 2px red;
+    top: 25%;
+    left: 27%;
+
+}
+
+#bocadillo img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+#mensajeIntro{
+    width: 20%;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+}
+
+#botonAdelante{
+    position: absolute; 
+    top: 0;
+}
+
