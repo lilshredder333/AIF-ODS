@@ -263,49 +263,100 @@ const ods = {
   ]
 }
 
-function mostrarPreguntas() {
-  
+let indicePreguntaActual = 0;
+let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
+let puntuacionTotal = 0; // Almacena la puntuación total
+
+function mostrarPregunta(indice) {
+  const pregunta = ods.pregunta[indice];
+
   const contenedorPreguntas = document.getElementById("contenedor-form");
   contenedorPreguntas.innerHTML = "";
-  contenedorPreguntas.style.width = "90%";
 
-  ods.pregunta.forEach(function (pregunta) {
-    let contenedorPregunta = document.createElement("div");
-    contenedorPregunta.classList.add("contenedor-pregunta");
+  let contenedorPregunta = document.createElement("div");
+  contenedorPregunta.classList.add("contenedor-pregunta");
 
-    let textoPregunta = document.createElement("h2");
-    textoPregunta.textContent = pregunta.texto;
+  let textoPregunta = document.createElement("h2");
+  textoPregunta.textContent = pregunta.texto;
 
-    let botonNext = document.createElement('button');
-    botonNext.textContent = 'Siguiente';
-    botonNext.id = ("btnNext");
+  contenedorPregunta.appendChild(textoPregunta);
 
-    let botonPrev = document.createElement('button');
-    botonPrev.textContent = 'Anterior';
-    botonPrev.id = ("btnPrev");
+  pregunta.respuesta.forEach(function (respuesta) {
+    let contenedorRespuestas = document.createElement("div");
+    contenedorRespuestas.classList.add("contenedor-respuestas");
 
-    contenedorPregunta.appendChild(textoPregunta);
+    let inputRespuesta = document.createElement("input");
+    inputRespuesta.type = "radio";
+    inputRespuesta.name = pregunta.texto; // Asignar nombre único a cada grupo de radio buttons
+    inputRespuesta.value = respuesta.valor;
+    inputRespuesta.checked = respuestasSeleccionadas.has(pregunta.texto) && respuestasSeleccionadas.get(pregunta.texto) === respuesta.valor; // Marcar la respuesta seleccionada anteriormente
 
-    pregunta.respuesta.forEach(function (respuesta) {
-      let contenedorRespuestas = document.createElement("div");
-      contenedorRespuestas.classList.add("contenedor-respuestas");
+    let labelRespuesta = document.createElement("label");
+    labelRespuesta.textContent = respuesta.texto;
 
-      let inputRespuesta = document.createElement("input");
-      inputRespuesta.type = "radio";
-      inputRespuesta.name = pregunta.texto; // Asignar nombre único a cada grupo de radio buttons
-      inputRespuesta.value = respuesta.valor;
-
-      let labelRespuesta = document.createElement("label");
-      labelRespuesta.textContent = respuesta.texto;
-
-      contenedorRespuestas.appendChild(inputRespuesta);
-      contenedorRespuestas.appendChild(labelRespuesta);
-      contenedorPregunta.appendChild(contenedorRespuestas);
-    });
-
-    contenedorPreguntas.appendChild(contenedorPregunta);
+    contenedorRespuestas.appendChild(inputRespuesta);
+    contenedorRespuestas.appendChild(labelRespuesta);
+    contenedorPregunta.appendChild(contenedorRespuestas);
   });
+
+  contenedorPreguntas.appendChild(contenedorPregunta);
 }
 
-mostrarPreguntas();
+function mostrarPreguntaSiguiente() {
+  if (indicePreguntaActual > 0) { // Si no estamos en la primera pregunta
+    const radios = document.querySelectorAll('input[type="radio"]:checked');
+    if (radios.length === 0) {
+      alert("Por favor, selecciona una respuesta antes de continuar.");
+      return;
+    }
+  }
 
+  if (indicePreguntaActual < ods.pregunta.length - 1) {
+    guardarRespuestaSeleccionada(); // Guardar la respuesta seleccionada antes de avanzar
+    indicePreguntaActual++;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
+
+function mostrarPreguntaAnterior() {
+  if (indicePreguntaActual > 0) {
+    indicePreguntaActual--;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
+
+function guardarRespuestaSeleccionada() {
+  const radios = document.querySelectorAll('input[type="radio"]:checked');
+  if (radios.length > 0) {
+    const preguntaActual = ods.pregunta[indicePreguntaActual].texto;
+    const valorRespuesta = parseInt(radios[0].value);
+    respuestasSeleccionadas.set(preguntaActual, valorRespuesta);
+    puntuacionTotal += valorRespuesta; // Actualizar la puntuación total
+  }
+}
+
+// Mostrar la primera pregunta al cargar la página
+mostrarPregunta(indicePreguntaActual);
+
+// Manejadores de eventos para los botones
+document.getElementById("btnNext").addEventListener("click", mostrarPreguntaSiguiente);
+document.getElementById("btnPrev").addEventListener("click", mostrarPreguntaAnterior);
+
+// Función para obtener el contenido HTML según la puntuación total
+function obtenerContenidoSegunPuntuacion() {
+  // Lógica para determinar el contenido HTML según la puntuación total
+  let contenidoHTML;
+  
+  if (puntuacionTotal >= 20) {
+    contenidoHTML = "<h3>Felicidades, obtuviste una puntuación alta.</h3>";
+  }
+  else {
+    contenidoHTML = "<h3>Tu puntuación no alcanza el umbral necesario.</h3>";
+  }
+
+  // Insertar el contenido en el elemento con id "resultado"
+  document.getElementById("resultado").innerHTML = contenidoHTML;
+}
+
+// Llamar a la función para obtener el contenido según la puntuación total
+obtenerContenidoSegunPuntuacion();
