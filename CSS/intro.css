@@ -12,7 +12,14 @@ body {
     background-color: white;
     background-image: url('../IMG/bg.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
 }
 
 #bg-pic{
@@ -22,11 +29,17 @@ body {
 }
 
 #personaje{
-    width: 28%;
+    width: 50%;
     position: absolute;
-    top: 30%; 
-    left: 50%;
+    top: 50%;
+    animation: movimientoPersonaje 2s ease-in-out;
+    animation-fill-mode: both;
+}
 
+@keyframes movimientoPersonaje {
+0% {left: 20%}
+
+100%{ left: 5%;}
 }
 
 #personaje img{
@@ -34,29 +47,67 @@ body {
 }
 
 #bocadillo{
-    width: 28%;
+    width: 50%;
     position: absolute;
-    border: solid 2px red;
-    top: 25%;
-    left: 27%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 30%;
+    right: -25%;
+    animation: movimientoBocadillo 2s ease-in-out;
+    animation-fill-mode: both;
+}
 
+@keyframes movimientoBocadillo {
+0% {right: -50%}
+
+100%{right: 5%;}
 }
 
 #bocadillo img{
     width: 100%;
-    position: absolute;
-    top: 0;
+
 }
 
 #mensajeIntro{
-    width: 20%;
-    font-size: 12px;
+    width: 80%;
+    font-size: 12.9px;
+    text-align: center;
+    padding: 4%;
+    font-weight: 600;
     position: absolute;
-    top: 0;
 }
 
 #botonAdelante{
-    position: absolute; 
+    width: 50%;
+    background-color:  white;
+    height: 45px;
+    border-radius: 20px;
+    display: flex;
+    position: absolute;
     top: 0;
+    visibility: hidden;
+    animation: movimientoBoton 2s ease-in-out;
+    animation-fill-mode: both;
 }
 
+@keyframes movimientoBoton {
+0% {top: 0%; visibility: hidden;}
+
+70%{ top: 0%; visibility: hidden;}
+
+100%{top: 20%; visibility: visible;}
+}
+
+#botonAdelante button{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+#botonAdelante button a{
+    color: rgb(43, 233, 59);
+    font-weight: 600;
+    font-size: 20px;
+}

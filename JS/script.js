@@ -263,3 +263,49 @@ const ods = {
   ]
 }
 
+function mostrarPreguntas() {
+  
+  const contenedorPreguntas = document.getElementById("contenedor-form");
+  contenedorPreguntas.innerHTML = "";
+  contenedorPreguntas.style.width = "90%";
+
+  ods.pregunta.forEach(function (pregunta) {
+    let contenedorPregunta = document.createElement("div");
+    contenedorPregunta.classList.add("contenedor-pregunta");
+
+    let textoPregunta = document.createElement("h2");
+    textoPregunta.textContent = pregunta.texto;
+
+    let botonNext = document.createElement('button');
+    botonNext.textContent = 'Siguiente';
+    botonNext.id = ("btnNext");
+
+    let botonPrev = document.createElement('button');
+    botonPrev.textContent = 'Anterior';
+    botonPrev.id = ("btnPrev");
+
+    contenedorPregunta.appendChild(textoPregunta);
+
+    pregunta.respuesta.forEach(function (respuesta) {
+      let contenedorRespuestas = document.createElement("div");
+      contenedorRespuestas.classList.add("contenedor-respuestas");
+
+      let inputRespuesta = document.createElement("input");
+      inputRespuesta.type = "radio";
+      inputRespuesta.name = pregunta.texto; // Asignar nombre único a cada grupo de radio buttons
+      inputRespuesta.value = respuesta.valor;
+
+      let labelRespuesta = document.createElement("label");
+      labelRespuesta.textContent = respuesta.texto;
+
+      contenedorRespuestas.appendChild(inputRespuesta);
+      contenedorRespuestas.appendChild(labelRespuesta);
+      contenedorPregunta.appendChild(contenedorRespuestas);
+    });
+
+    contenedorPreguntas.appendChild(contenedorPregunta);
+  });
+}
+
+mostrarPreguntas();
+
