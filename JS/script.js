@@ -263,6 +263,14 @@ const ods = {
   ]
 }
 
+
+
+
+
+
+
+
+
 let indicePreguntaActual = 0;
 let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
 let puntuacionTotal = 0; // Almacena la puntuación total
@@ -292,6 +300,7 @@ function mostrarPregunta(indice) {
     inputRespuesta.checked = respuestasSeleccionadas.has(pregunta.texto) && respuestasSeleccionadas.get(pregunta.texto) === respuesta.valor; // Marcar la respuesta seleccionada anteriormente
 
     let labelRespuesta = document.createElement("label");
+    // labelRespuesta.classList.add("btn", "btn-primary"); // Estilo similar al botón de Bootstrap
     labelRespuesta.textContent = respuesta.texto;
 
     contenedorRespuestas.appendChild(inputRespuesta);
