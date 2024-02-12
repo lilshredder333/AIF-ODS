@@ -35,7 +35,8 @@ const ods = {
       respuesta: [
         { texto: "a. Establecer normativas claras sobre el lenguaje utilizado en espacios de trabajo y en reuniones y aplicar un sistema de sanciones en caso de uso de mensajes discriminatorios.", valor: 5 },
         { texto: "b. Proporcionar a los trabajadores formaciones y talleres de sensibilización sobre la importancia de un lenguaje no sexista.", valor: 4 },
-        { texto: "c. Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar.", valor: 4 }
+        { texto: "c. Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar.", valor: 4 },
+        { texto: "d. No tomamos medidas específicas.", valor: 0 }
       ],
       recomendaciones: [
         { texto: "Establecer normativas claras sobre el lenguaje utilizado en espacios de trabajo y en reuniones y aplicar un sistema de sanciones en caso de uso de mensajes discriminatorios." },
@@ -46,7 +47,10 @@ const ods = {
     {
       texto: "4. ¿Qué acciones lleváis a cabo para fomentar la capacitación y sensibilización en temas de género, diversidad e inclusión?",
       respuesta: [
-        { texto: "a. Proporcionar programas de capacitación para empleados en temas de género, diversidad e inclusión.", valor: 5 }
+        { texto: "a. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género.", valor: 0 },
+        { texto: "b. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género. Pero tenemos pensado hacerlas en un periodo corto de tiempo. Acortar el periodo de tiempo lo máximo posible.", valor: 2 },
+        { texto: "c. Realizamos una charla o conferencia al año para asegurar la eliminación de estereotipos de género.", valor: 3 },
+        { texto: "d. Realizamos más de una charla o conferencia al año para asegurar la eliminación de estereotipos de género.", valor: 5 }
       ],
       recomendaciones: [
         { texto: "Proporcionar programas de capacitación para empleados en temas de género, diversidad e inclusión." }
@@ -55,7 +59,10 @@ const ods = {
     {
       texto: "5. ¿Vuestra empresa cuenta con un canal de denuncias seguro y confidencial para abordar problemas de discriminación?",
       respuesta: [
-        { texto: "a. Sí, contamos con un canal de denuncias seguro y confidencial para abordar problemas de discriminación.", valor: 5 }
+        { texto: "a. El trato para los clientes es formal y adecuado para cada uno de ellos, sin tener restricciones por el género y fomentando la importancia de la igualdad de género", valor: 5 },
+        { texto: "b. No se tienen en cuenta diferentes formalidades para el género de cada cliente", valor: 3 },
+        { texto: "c. Según el género no damos ningún tipo de información.", valor: 2 },
+        { texto: "d. Se prioriza un género exclusivo como cliente, buscando la exclusión y desinterés por el otro.", valor: 0 }
       ],
       recomendaciones: [
         { texto: "Establecer un canal de denuncias seguro y confidencial para abordar problemas de discriminación." }
@@ -64,232 +71,336 @@ const ods = {
     {
       texto: "6. ¿Qué medidas habéis implementado para garantizar un lenguaje inclusivo y no discriminatorio en las interacciones con clientes?",
       respuesta: [
-        { texto: "a. Establecer un seguimiento mensual para comprobar que los trabajadores que tengan contacto con clientes tengan un lenguaje adecuado, formal e igualitario para todos los géneros.", valor: 5 }
+        { texto: "a. Entre el 100 y el 80% de la dirección", valor: 5 },
+        { texto: "b. De un 79% a un 60% de la dirección", valor: 4 },
+        { texto: "c. De un 59% a un 40% de la dirección", valor: 3 },
+        { texto: "d. Menos del 40% de la dirección", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Establecer un seguimiento mensual para comprobar que los trabajadores que tengan contacto con clientes tengan un lenguaje adecuado, formal e igualitario para todos los géneros." }
+        { texto: "Establecer un protocolo claro de comunicación inclusiva para el personal de atención al cliente." },
+        { texto: "Proporcionar capacitación periódica sobre el uso de un lenguaje inclusivo y no discriminatorio." }
       ]
     },
     {
-      texto: "7. ¿Qué acciones lleváis a cabo para promover el desarrollo y la promoción de mujeres en puestos directivos?",
+      texto: "7. ¿Ofrecéis programas de mentoría o capacitación para mujeres en posiciones de liderazgo?",
       respuesta: [
-        { texto: "a. Adoptar programas de búsqueda activa de talento femenino.", valor: 5 },
-        { texto: "b. Activar la promoción y desarrollo de mujeres cualificadas a puestos directivos, incluyendo mentoría y coaching, para ayudarlas a adquirir las habilidades necesarias para ascender a puestos directivos.", valor: 5 },
-        { texto: "c. Incluir a las mujeres en la participación de conferencias, la nominación para premios y la promoción de su trabajo a través de diversos canales de comunicación.", valor: 5 },
-        { texto: "d. Llegar a la proporción de un 50% de mujeres en los puestos directivos en un periodo de 3 años.", valor: 5 }
+        { texto: "a. Sí, ofrecemos programas específicos de mentoría y capacitación para mujeres en posiciones de liderazgo.", valor: 5 },
+        { texto: "b. Estamos en proceso de desarrollar programas de mentoría y capacitación para mujeres en posiciones de liderazgo.", valor: 3 },
+        { texto: "c. No, no ofrecemos programas específicos de mentoría y capacitación para mujeres en posiciones de liderazgo en este momento.", valor: 2 },
+        { texto: "d. No estoy seguro/a de si la empresa ofrece este tipo de programas.", valor: 0 }
       ],
       recomendaciones: [
-        { texto: "Adoptar programas de búsqueda activa de talento femenino" },
-        { texto: "Activar la promoción y desarrollo de mujeres cualificadas a puestos directivos, incluyendo mentoría y coaching, para ayudarlas a adquirir las habilidades necesarias para ascender a puestos directivos." },
-        { texto: "Incluir a las mujeres en la participación de conferencias, la nominación para premios y la promoción de su trabajo a través de diversos canales de comunicación." },
-        { texto: "Llegar a la proporción de un 50% de mujeres en los puestos directivos en un periodo de 3 años." }
+        { texto: "Desarrollar programas de mentoría y capacitación para mujeres en posiciones de liderazgo para fomentar la igualdad de género en la empresa." }
       ]
     },
     {
-      texto: "8. ¿Realizáis análisis periódicos para identificar posibles brechas de género en el ámbito laboral?",
+      texto: "8. ¿Cómo fomentáis la diversidad cultural dentro de la empresa?",
       respuesta: [
-        { texto: "a. Sí, analizamos datos internos de contratación para identificar brechas de género y comprender las razones detrás de ellas.", valor: 5 }
+        { texto: "a. Promovemos la contratación de empleados de diversas culturas y origen étnico.", valor: 5 },
+        { texto: "b. Organizamos eventos y actividades para celebrar y promover la diversidad cultural.", valor: 4 },
+        { texto: "c. Ofrecemos programas de capacitación sobre sensibilización cultural y competencia intercultural.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para fomentar la diversidad cultural en la empresa.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Analizar datos internos de contratación para identificar brechas de género y comprender las razones detrás de ellas." }
+        { texto: "Promover la contratación de empleados de diversas culturas y origen étnico." },
+        { texto: "Organizar eventos y actividades para celebrar y promover la diversidad cultural." },
+        { texto: "Ofrecer programas de capacitación sobre sensibilización cultural y competencia intercultural." }
       ]
     },
     {
-      texto: "9. ¿Cómo promovéis un entorno laboral inclusivo y equitativo en vuestra empresa?",
+      texto: "9. ¿Cómo garantizáis la igualdad de oportunidades para personas con discapacidad?",
       respuesta: [
-        { texto: "a. Realizamos encuestas con el personal para comprender sus percepciones y experiencias relacionadas con la distribución de género en la asignación de roles y responsabilidades.", valor: 5 }
+        { texto: "a. Contamos con políticas de inclusión activa y adaptaciones razonables para personas con discapacidad.", valor: 5 },
+        { texto: "b. Ofrecemos programas de capacitación sobre inclusión y sensibilización sobre discapacidad.", valor: 4 },
+        { texto: "c. Adaptamos los puestos de trabajo y proporcionamos apoyo adicional según las necesidades de cada persona con discapacidad.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para garantizar la igualdad de oportunidades para personas con discapacidad.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Realizar encuestas con el personal para comprender sus percepciones y experiencias relacionadas con la distribución de género en la asignación de roles y responsabilidades." }
+        { texto: "Implementar políticas de inclusión activa y adaptaciones razonables para personas con discapacidad." },
+        { texto: "Ofrecer programas de capacitación sobre inclusión y sensibilización sobre discapacidad." },
+        { texto: "Adaptar los puestos de trabajo y proporcionar apoyo adicional según las necesidades de cada persona con discapacidad." }
       ]
     },
     {
-      texto: "10. ¿Qué medidas tomáis para garantizar un trato igualitario y respetuoso en el lugar de trabajo?",
+      texto: "10. ¿Qué medidas tomáis para promover la igualdad salarial entre hombres y mujeres?",
       respuesta: [
-        { texto: "a. Realizamos sesiones de formación y talleres sobre igualdad de género y diversidad para concienciar a los empleados.", valor: 5 }
+        { texto: "a. Realizamos revisiones periódicas de sueldos para garantizar la equidad salarial.", valor: 5 },
+        { texto: "b. Tenemos políticas de transparencia salarial y prohibimos la discriminación salarial por género.", valor: 4 },
+        { texto: "c. Realizamos auditorías salariales para identificar y corregir posibles brechas salariales de género.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover la igualdad salarial entre hombres y mujeres.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Realizar sesiones de formación y talleres sobre igualdad de género y diversidad para concienciar a los empleados." }
+        { texto: "Realizar revisiones periódicas de sueldos para garantizar la equidad salarial." },
+        { texto: "Implementar políticas de transparencia salarial y prohibir la discriminación salarial por género." },
+        { texto: "Realizar auditorías salariales para identificar y corregir posibles brechas salariales de género." }
       ]
     },
     {
-      texto: "11. ¿Cómo fomentáis la participación activa de hombres y mujeres en la crianza y el cuidado de los hijos?",
+      texto: "11. ¿Cómo promovéis un ambiente de trabajo inclusivo para personas LGBTQ+?",
       respuesta: [
-        { texto: "a. Implementamos políticas de flexibilidad laboral que permiten a los empleados equilibrar sus responsabilidades laborales y familiares.", valor: 5 }
+        { texto: "a. Tenemos políticas de no discriminación por orientación sexual e identidad de género.", valor: 5 },
+        { texto: "b. Ofrecemos capacitación sobre diversidad sexual y de género para empleados y directivos.", valor: 4 },
+        { texto: "c. Organizamos eventos y actividades para celebrar la diversidad LGBTQ+.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover un ambiente de trabajo inclusivo para personas LGBTQ+.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Implementar políticas de flexibilidad laboral que permiten a los empleados equilibrar sus responsabilidades laborales y familiares." }
+        { texto: "Implementar políticas de no discriminación por orientación sexual e identidad de género." },
+        { texto: "Ofrecer capacitación sobre diversidad sexual y de género para empleados y directivos." },
+        { texto: "Organizar eventos y actividades para celebrar la diversidad LGBTQ+." }
       ]
     },
     {
-      texto: "12. ¿Qué estrategias empleáis para eliminar la discriminación de género en los procesos de selección y promoción?",
+      texto: "12. ¿Qué medidas tomáis para asegurar la igualdad de oportunidades para personas de diferentes edades?",
       respuesta: [
-        { texto: "a. Revisamos y actualizamos regularmente nuestras políticas de contratación y promoción para garantizar la igualdad de oportunidades para todos los empleados.", valor: 5 }
+        { texto: "a. Fomentamos la contratación intergeneracional y ofrecemos programas de mentoría.", valor: 5 },
+        { texto: "b. No tenemos medidas específicas para asegurar la igualdad de oportunidades para personas de diferentes edades.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Revisar y actualizar regularmente las políticas de contratación y promoción para garantizar la igualdad de oportunidades para todos los empleados." }
+        { texto: "Fomentar la contratación intergeneracional y ofrecer programas de mentoría para empleados de diferentes edades." }
       ]
     },
     {
-      texto: "13. ¿Qué acciones lleváis a cabo para prevenir y abordar el acoso de género en el lugar de trabajo?",
+      texto: "13. ¿Qué acciones realizáis para fomentar la participación y representación de mujeres en puestos directivos y de liderazgo?",
       respuesta: [
-        { texto: "a. Ofrecemos formación y recursos para que los empleados puedan identificar y denunciar el acoso de género.", valor: 5 }
+        { texto: "a. Implementamos políticas de cuotas de género para garantizar una representación equitativa de mujeres en puestos directivos y de liderazgo.", valor: 5 },
+        { texto: "b. Ofrecemos programas de desarrollo profesional y mentoría específicamente diseñados para mujeres.", valor: 4 },
+        { texto: "c. Fomentamos la visibilidad y reconocimiento de los logros de las mujeres en la empresa.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para fomentar la participación y representación de mujeres en puestos directivos y de liderazgo.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Ofrecer formación y recursos para que los empleados puedan identificar y denunciar el acoso de género." }
+        { texto: "Implementar políticas de cuotas de género para garantizar una representación equitativa de mujeres en puestos directivos y de liderazgo." },
+        { texto: "Ofrecer programas de desarrollo profesional y mentoría específicamente diseñados para mujeres." },
+        { texto: "Fomentar la visibilidad y reconocimiento de los logros de las mujeres en la empresa." }
       ]
     },
     {
-      texto: "14. ¿Realizáis evaluaciones regulares del clima laboral para identificar posibles problemas de género?",
+      texto: "14. ¿Qué acciones lleváis a cabo para fomentar un ambiente de trabajo inclusivo para personas con diferentes habilidades y condiciones de salud?",
       respuesta: [
-        { texto: "a. Sí, realizamos evaluaciones periódicas del clima laboral que incluyen preguntas específicas sobre igualdad de género.", valor: 5 }
+        { texto: "a. Contamos con políticas de inclusión y adaptaciones razonables para personas con diferentes habilidades y condiciones de salud.", valor: 5 },
+        { texto: "b. Ofrecemos programas de sensibilización y capacitación sobre diversidad funcional para empleados y directivos.", valor: 4 },
+        { texto: "c. Adaptamos los espacios de trabajo y proporcionamos apoyo adicional según las necesidades de cada persona con diferentes habilidades y condiciones de salud.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para fomentar un ambiente de trabajo inclusivo para personas con diferentes habilidades y condiciones de salud.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Realizar evaluaciones periódicas del clima laboral que incluyan preguntas específicas sobre igualdad de género." }
+        { texto: "Implementar políticas de inclusión y adaptaciones razonables para personas con diferentes habilidades y condiciones de salud." },
+        { texto: "Ofrecer programas de sensibilización y capacitación sobre diversidad funcional para empleados y directivos." },
+        { texto: "Adaptar los espacios de trabajo y proporcionar apoyo adicional según las necesidades de cada persona con diferentes habilidades y condiciones de salud." }
       ]
     },
     {
-      texto: "15. ¿Qué acciones lleváis a cabo para fomentar la igualdad salarial entre hombres y mujeres?",
+      texto: "15. ¿Qué medidas habéis implementado para garantizar la igualdad de oportunidades para personas de diferentes orígenes socioeconómicos?",
       respuesta: [
-        { texto: "a. Realizamos análisis salariales regulares para identificar y corregir posibles brechas de género.", valor: 5 }
+        { texto: "a. Ofrecemos oportunidades de desarrollo profesional y ascenso basadas en el rendimiento y habilidades, independientemente del origen socioeconómico.", valor: 5 },
+        { texto: "b. Proporcionamos programas de capacitación y mentoría para empleados de diferentes orígenes socioeconómicos.", valor: 4 },
+        { texto: "c. Implementamos políticas de equidad salarial y beneficios que favorezcan a empleados de diferentes orígenes socioeconómicos.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para garantizar la igualdad de oportunidades para personas de diferentes orígenes socioeconómicos.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Realizar análisis salariales regulares para identificar y corregir posibles brechas de género." }
+        { texto: "Ofrecer oportunidades de desarrollo profesional y ascenso basadas en el rendimiento y habilidades, independientemente del origen socioeconómico." },
+        { texto: "Proporcionar programas de capacitación y mentoría para empleados de diferentes orígenes socioeconómicos." },
+        { texto: "Implementar políticas de equidad salarial y beneficios que favorezcan a empleados de diferentes orígenes socioeconómicos." }
       ]
     },
     {
-      texto: "16. ¿Vuestra empresa cuenta con políticas para fomentar la participación equitativa de hombres y mujeres en roles de liderazgo?",
+      texto: "16. ¿Qué medidas habéis implementado para garantizar un ambiente de trabajo seguro y libre de acoso sexual?",
       respuesta: [
-        { texto: "a. Sí, tenemos políticas y programas específicos para fomentar la participación equitativa de hombres y mujeres en roles de liderazgo.", valor: 5 }
+        { texto: "a. Contamos con políticas de tolerancia cero hacia el acoso sexual y procedimientos claros para reportar y abordar casos de acoso.", valor: 5 },
+        { texto: "b. Ofrecemos programas de sensibilización y capacitación sobre acoso sexual para empleados y directivos.", valor: 4 },
+        { texto: "c. Fomentamos una cultura de respeto y empatía en el lugar de trabajo mediante actividades y campañas de concienciación.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para garantizar un ambiente de trabajo seguro y libre de acoso sexual.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Implementar políticas y programas específicos para fomentar la participación equitativa de hombres y mujeres en roles de liderazgo." }
+        { texto: "Implementar políticas de tolerancia cero hacia el acoso sexual y procedimientos claros para reportar y abordar casos de acoso." },
+        { texto: "Ofrecer programas de sensibilización y capacitación sobre acoso sexual para empleados y directivos." },
+        { texto: "Fomentar una cultura de respeto y empatía en el lugar de trabajo mediante actividades y campañas de concienciación." }
       ]
     },
     {
-      texto: "17. ¿Qué medidas tomáis para garantizar un ambiente laboral seguro y libre de discriminación?",
+      texto: "17. ¿Qué medidas tomáis para garantizar la igualdad de oportunidades para personas con diferentes niveles de educación?",
       respuesta: [
-        { texto: "a. Establecemos normas claras de comportamiento y consecuencias para aquellos que violen esas normas, incluida la discriminación de género.", valor: 5 }
+        { texto: "a. Ofrecemos oportunidades de formación continua y desarrollo profesional para todos los empleados, independientemente de su nivel educativo.", valor: 5 },
+        { texto: "b. Adaptamos los procesos de selección y promoción para valorar las habilidades y experiencia por encima del nivel educativo.", valor: 4 },
+        { texto: "c. Proporcionamos apoyo y recursos adicionales para empleados con menor nivel educativo.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para garantizar la igualdad de oportunidades para personas con diferentes niveles de educación.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Establecer normas claras de comportamiento y consecuencias para aquellos que violen esas normas, incluida la discriminación de género." }
+        { texto: "Ofrecer oportunidades de formación continua y desarrollo profesional para todos los empleados, independientemente de su nivel educativo." },
+        { texto: "Adaptar los procesos de selección y promoción para valorar las habilidades y experiencia por encima del nivel educativo." },
+        { texto: "Proporcionar apoyo y recursos adicionales para empleados con menor nivel educativo." }
       ]
     },
     {
-      texto: "18. ¿Cómo fomentáis la inclusión de la diversidad de género en vuestra empresa?",
+      texto: "18. ¿Qué acciones lleváis a cabo para fomentar la participación y representación de personas de diferentes géneros en equipos de trabajo y proyectos?",
       respuesta: [
-        { texto: "a. Promovemos la diversidad de género en todas las áreas de la empresa, desde la contratación hasta la promoción y el liderazgo.", valor: 5 }
+        { texto: "a. Promovemos la diversidad de género en la formación de equipos y proyectos mediante políticas de inclusión y equidad.", valor: 5 },
+        { texto: "b. Fomentamos la colaboración y el intercambio de ideas entre personas de diferentes géneros en todos los niveles de la empresa.", valor: 4 },
+        { texto: "c. Implementamos medidas para evitar sesgos de género en la selección y asignación de proyectos y responsabilidades.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para fomentar la participación y representación de personas de diferentes géneros en equipos de trabajo y proyectos.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Promover la diversidad de género en todas las áreas de la empresa, desde la contratación hasta la promoción y el liderazgo." }
+        { texto: "Promover la diversidad de género en la formación de equipos y proyectos mediante políticas de inclusión y equidad." },
+        { texto: "Fomentar la colaboración y el intercambio de ideas entre personas de diferentes géneros en todos los niveles de la empresa." },
+        { texto: "Implementar medidas para evitar sesgos de género en la selección y asignación de proyectos y responsabilidades." }
       ]
     },
     {
-      texto: "19. ¿Qué medidas tomáis para garantizar un proceso de selección justo e imparcial?",
+      texto: "19. ¿Qué medidas habéis implementado para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades religiosas?",
       respuesta: [
-        { texto: "a. Utilizamos criterios de selección objetivos y evaluamos a todos los candidatos por igual, sin tener en cuenta su género.", valor: 5 }
+        { texto: "a. Fomentamos la tolerancia religiosa y el respeto mutuo mediante políticas de diversidad e inclusión.", valor: 5 },
+        { texto: "b. Ofrecemos espacios de reflexión y diálogo interreligioso para empleados de diferentes identidades religiosas.", valor: 4 },
+        { texto: "c. Adaptamos los horarios y prácticas laborales para respetar las festividades religiosas de todas las religiones representadas en la empresa.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades religiosas.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Utilizar criterios de selección objetivos y evaluar a todos los candidatos por igual, sin tener en cuenta su género." }
+        { texto: "Fomentar la tolerancia religiosa y el respeto mutuo mediante políticas de diversidad e inclusión." },
+        { texto: "Ofrecer espacios de reflexión y diálogo interreligioso para empleados de diferentes identidades religiosas." },
+        { texto: "Adaptar los horarios y prácticas laborales para respetar las festividades religiosas de todas las religiones representadas en la empresa." }
       ]
     },
     {
-      texto: "20. ¿Cómo fomentáis la conciliación entre la vida laboral y personal para todos los empleados?",
+      texto: "20. ¿Qué medidas habéis implementado para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades de género?",
       respuesta: [
-        { texto: "a. Ofrecemos opciones flexibles de horario de trabajo y teletrabajo para ayudar a los empleados a equilibrar sus responsabilidades laborales y personales.", valor: 5 }
+        { texto: "a. Fomentamos el respeto a la identidad de género de cada persona y prohibimos la discriminación por identidad de género.", valor: 5 },
+        { texto: "b. Ofrecemos capacitación sobre diversidad de género y sensibilización sobre identidades transgénero.", valor: 4 },
+        { texto: "c. Implementamos políticas de inclusión y adaptaciones para garantizar un entorno seguro para personas de diferentes identidades de género.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades de género.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Ofrecer opciones flexibles de horario de trabajo y teletrabajo para ayudar a los empleados a equilibrar sus responsabilidades laborales y personales." }
+        { texto: "Fomentar el respeto a la identidad de género de cada persona y prohibir la discriminación por identidad de género." },
+        { texto: "Ofrecer capacitación sobre diversidad de género y sensibilización sobre identidades transgénero." },
+        { texto: "Implementar políticas de inclusión y adaptaciones para garantizar un entorno seguro para personas de diferentes identidades de género." }
       ]
     },
     {
-      texto: "21. ¿Cómo promovéis la igualdad de género en vuestra estrategia de marketing y comunicación?",
+      texto: "21. ¿Qué medidas tomáis para promover la igualdad de oportunidades para personas de diferentes orientaciones sexuales?",
       respuesta: [
-        { texto: "a. Utilizamos imágenes y mensajes que promuevan la igualdad de género y evitamos los estereotipos de género en nuestra publicidad y comunicaciones.", valor: 5 }
+        { texto: "a. Fomentamos la aceptación y el respeto hacia todas las orientaciones sexuales mediante políticas de inclusión y no discriminación.", valor: 5 },
+        { texto: "b. Ofrecemos formación sobre diversidad sexual y sensibilización sobre discriminación por orientación sexual.", valor: 4 },
+        { texto: "c. Implementamos medidas para prevenir y abordar casos de discriminación por orientación sexual en el lugar de trabajo.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover la igualdad de oportunidades para personas de diferentes orientaciones sexuales.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Utilizar imágenes y mensajes que promuevan la igualdad de género y evitar los estereotipos de género en la publicidad y comunicaciones." }
+        { texto: "Fomentar la aceptación y el respeto hacia todas las orientaciones sexuales mediante políticas de inclusión y no discriminación." },
+        { texto: "Ofrecer formación sobre diversidad sexual y sensibilización sobre discriminación por orientación sexual." },
+        { texto: "Implementar medidas para prevenir y abordar casos de discriminación por orientación sexual en el lugar de trabajo." }
       ]
     },
     {
-      texto: "22. ¿Qué acciones lleváis a cabo para prevenir el acoso sexual en el lugar de trabajo?",
+      texto: "22. ¿Qué medidas habéis implementado para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades de género?",
       respuesta: [
-        { texto: "a. Ofrecemos formación y recursos para que los empleados puedan identificar y denunciar el acoso sexual.", valor: 5 }
+        { texto: "a. Fomentamos el respeto a la identidad de género de cada persona y prohibimos la discriminación por identidad de género.", valor: 5 },
+        { texto: "b. Ofrecemos capacitación sobre diversidad de género y sensibilización sobre identidades transgénero.", valor: 4 },
+        { texto: "c. Implementamos políticas de inclusión y adaptaciones para garantizar un entorno seguro para personas de diferentes identidades de género.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover un ambiente de trabajo seguro y respetuoso para personas de diferentes identidades de género.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Ofrecer formación y recursos para que los empleados puedan identificar y denunciar el acoso sexual." }
+        { texto: "Fomentar el respeto a la identidad de género de cada persona y prohibir la discriminación por identidad de género." },
+        { texto: "Ofrecer capacitación sobre diversidad de género y sensibilización sobre identidades transgénero." },
+        { texto: "Implementar políticas de inclusión y adaptaciones para garantizar un entorno seguro para personas de diferentes identidades de género." }
       ]
     },
     {
-      texto: "23. ¿Vuestra empresa cuenta con medidas para garantizar una distribución equitativa de tareas domésticas y de cuidado entre hombres y mujeres?",
+      texto: "23. ¿Qué medidas tomáis para promover la igualdad de oportunidades para personas de diferentes orientaciones sexuales?",
       respuesta: [
-        { texto: "a. Sí, tenemos políticas y programas para promover la participación equitativa de hombres y mujeres en las tareas domésticas y de cuidado.", valor: 5 }
+        { texto: "a. Fomentamos la aceptación y el respeto hacia todas las orientaciones sexuales mediante políticas de inclusión y no discriminación.", valor: 5 },
+        { texto: "b. Ofrecemos formación sobre diversidad sexual y sensibilización sobre discriminación por orientación sexual.", valor: 4 },
+        { texto: "c. Implementamos medidas para prevenir y abordar casos de discriminación por orientación sexual en el lugar de trabajo.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover la igualdad de oportunidades para personas de diferentes orientaciones sexuales.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Implementar políticas y programas para promover la participación equitativa de hombres y mujeres en las tareas domésticas y de cuidado." }
+        { texto: "Fomentar la aceptación y el respeto hacia todas las orientaciones sexuales mediante políticas de inclusión y no discriminación." },
+        { texto: "Ofrecer formación sobre diversidad sexual y sensibilización sobre discriminación por orientación sexual." },
+        { texto: "Implementar medidas para prevenir y abordar casos de discriminación por orientación sexual en el lugar de trabajo." }
       ]
     },
     {
-      texto: "24. ¿Qué medidas tomáis para garantizar una representación equitativa de hombres y mujeres en eventos y conferencias?",
+      texto: "24. ¿Qué medidas tomáis para promover la igualdad de oportunidades para personas de diferentes edades?",
       respuesta: [
-        { texto: "a. Promovemos activamente la participación de mujeres como oradoras y panelistas en eventos y conferencias.", valor: 5 }
+        { texto: "a. Fomentamos la contratación intergeneracional y ofrecemos programas de mentoría.", valor: 5 },
+        { texto: "b. No tenemos medidas específicas para promover la igualdad de oportunidades para personas de diferentes edades.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Promover activamente la participación de mujeres como oradoras y panelistas en eventos y conferencias." }
+        { texto: "Fomentar la contratación intergeneracional y ofrecer programas de mentoría para empleados de diferentes edades." }
       ]
     },
     {
-      texto: "25. ¿Cómo fomentáis la participación de mujeres en roles de liderazgo y toma de decisiones en vuestra empresa?",
+      texto: "25. ¿Qué medidas tomáis para promover la igualdad salarial entre hombres y mujeres?",
       respuesta: [
-        { texto: "a. Ofrecemos oportunidades de desarrollo y capacitación específicas para mujeres que aspiran a roles de liderazgo y toma de decisiones.", valor: 5 }
+        { texto: "a. Realizamos revisiones periódicas de sueldos para garantizar la equidad salarial.", valor: 5 },
+        { texto: "b. Tenemos políticas de transparencia salarial y prohibimos la discriminación salarial por género.", valor: 4 },
+        { texto: "c. Realizamos auditorías salariales para identificar y corregir posibles brechas salariales de género.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para promover la igualdad salarial entre hombres y mujeres.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Ofrecer oportunidades de desarrollo y capacitación específicas para mujeres que aspiran a roles de liderazgo y toma de decisiones." }
+        { texto: "Realizar revisiones periódicas de sueldos para garantizar la equidad salarial." },
+        { texto: "Implementar políticas de transparencia salarial y prohibir la discriminación salarial por género." },
+        { texto: "Realizar auditorías salariales para identificar y corregir posibles brechas salariales de género." }
       ]
     },
     {
-      texto: "26. ¿Qué acciones lleváis a cabo para promover una cultura organizacional inclusiva y respetuosa con la diversidad de género?",
+      texto: "26. ¿Qué acciones lleváis a cabo para fomentar la diversidad cultural dentro de la empresa?",
       respuesta: [
-        { texto: "a. Organizamos sesiones de sensibilización y capacitación sobre diversidad de género para todos los empleados.", valor: 5 }
+        { texto: "a. Promovemos la contratación de empleados de diversas culturas y origen étnico.", valor: 5 },
+        { texto: "b. Organizamos eventos y actividades para celebrar y promover la diversidad cultural.", valor: 4 },
+        { texto: "c. Ofrecemos programas de capacitación sobre sensibilización cultural y competencia intercultural.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para fomentar la diversidad cultural en la empresa.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Organizar sesiones de sensibilización y capacitación sobre diversidad de género para todos los empleados." }
+        { texto: "Promover la contratación de empleados de diversas culturas y origen étnico." },
+        { texto: "Organizar eventos y actividades para celebrar y promover la diversidad cultural." },
+        { texto: "Ofrecer programas de capacitación sobre sensibilización cultural y competencia intercultural." }
       ]
     },
     {
-      texto: "27. ¿Cómo fomentáis la participación equitativa de hombres y mujeres en programas de mentoría y desarrollo profesional?",
+      texto: "27. ¿Qué acciones lleváis a cabo para fomentar la capacitación y sensibilización en temas de género, diversidad e inclusión?",
       respuesta: [
-        { texto: "a. Implementamos programas de mentoría específicos para mujeres y promovemos la participación equitativa de hombres y mujeres en programas de desarrollo profesional.", valor: 5 }
+        { texto: "a. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género.", valor: 0 },
+        { texto: "b. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género. Pero tenemos pensado hacerlas en un periodo corto de tiempo. Acortar el periodo de tiempo lo máximo posible.", valor: 2 },
+        { texto: "c. Realizamos una charla o conferencia al año para asegurar la eliminación de estereotipos de género.", valor: 3 },
+        { texto: "d. Realizamos más de una charla o conferencia al año para asegurar la eliminación de estereotipos de género.", valor: 5 }
       ],
       recomendaciones: [
-        { texto: "Implementar programas de mentoría específicos para mujeres y promover la participación equitativa de hombres y mujeres en programas de desarrollo profesional." }
+        { texto: "Proporcionar programas de capacitación para empleados en temas de género, diversidad e inclusión." }
       ]
     },
     {
-      texto: "28. ¿Qué medidas tomáis para eliminar sesgos de género en los procesos de evaluación del desempeño y ascenso?",
+      texto: "28. ¿Vuestra empresa cuenta con un canal de denuncias seguro y confidencial para abordar problemas de discriminación?",
       respuesta: [
-        { texto: "a. Proporcionamos formación a los evaluadores sobre sesgos de género y establecemos criterios objetivos para evaluar el desempeño y el potencial de los empleados.", valor: 5 }
+        { texto: "a. El trato para los clientes es formal y adecuado para cada uno de ellos, sin tener restricciones por el género y fomentando la importancia de la igualdad de género", valor: 5 },
+        { texto: "b. No se tienen en cuenta diferentes formalidades para el género de cada cliente", valor: 3 },
+        { texto: "c. Según el género no damos ningún tipo de información.", valor: 2 },
+        { texto: "d. Se prioriza un género exclusivo como cliente, buscando la exclusión y desinterés por el otro.", valor: 0 }
       ],
       recomendaciones: [
-        { texto: "Proporcionar formación a los evaluadores sobre sesgos de género y establecer criterios objetivos para evaluar el desempeño y el potencial de los empleados." }
+        { texto: "Establecer un canal de denuncias seguro y confidencial para abordar problemas de discriminación." }
       ]
     },
     {
-      texto: "29. ¿Qué acciones lleváis a cabo para fomentar una cultura de apoyo y solidaridad entre hombres y mujeres en el lugar de trabajo?",
+      texto: "29. ¿Qué medidas habéis implementado para promover un lenguaje inclusivo y no sexista en el entorno laboral?",
       respuesta: [
-        { texto: "a. Organizamos actividades y eventos que promueven la interacción y el trabajo en equipo entre hombres y mujeres.", valor: 5 }
+        { texto: "a. Establecer normativas claras sobre el lenguaje utilizado en espacios de trabajo y en reuniones y aplicar un sistema de sanciones en caso de uso de mensajes discriminatorios.", valor: 5 },
+        { texto: "b. Proporcionar a los trabajadores formaciones y talleres de sensibilización sobre la importancia de un lenguaje no sexista.", valor: 4 },
+        { texto: "c. Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar.", valor: 4 },
+        { texto: "d. No tomamos medidas específicas.", valor: 0 }
       ],
       recomendaciones: [
-        { texto: "Organizar actividades y eventos que promuevan la interacción y el trabajo en equipo entre hombres y mujeres." }
+        { texto: "Establecer normativas claras sobre el lenguaje utilizado en espacios de trabajo y en reuniones y aplicar un sistema de sanciones en caso de uso de mensajes discriminatorios." },
+        { texto: "Proporcionar a los trabajadores formaciones y talleres de sensibilización sobre la importancia de un lenguaje no sexista." },
+        { texto: "Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar." }
       ]
     },
     {
-      texto: "30. ¿Qué medidas tomáis para garantizar un trato igualitario y respetuoso hacia todas las personas, independientemente de su género u orientación sexual?",
+      texto: "30. ¿Qué medidas tomáis para garantizar que el reclutamiento y la selección de personal se realicen de manera justa e inclusiva?",
       respuesta: [
-        { texto: "a. Establecemos normas de conducta claras y proporcionamos formación sobre diversidad e inclusión a todos los empleados.", valor: 5 }
+        { texto: "a. Utilizamos métodos de reclutamiento y selección que promueven la diversidad y la igualdad de oportunidades.", valor: 5 },
+        { texto: "b. Revisamos y actualizamos regularmente nuestros procesos de reclutamiento y selección para eliminar sesgos y prejuicios.", valor: 4 },
+        { texto: "c. Ofrecemos formación y capacitación a los responsables de selección para promover prácticas justas e inclusivas.", valor: 4 },
+        { texto: "d. No tenemos medidas específicas para garantizar que el reclutamiento y la selección de personal se realicen de manera justa e inclusiva.", valor: 2 }
       ],
       recomendaciones: [
-        { texto: "Establecer normas de conducta claras y proporcionar formación sobre diversidad e inclusión a todos los empleados." }
+        { texto: "Utilizar métodos de reclutamiento y selección que promuevan la diversidad y la igualdad de oportunidades." },
+        { texto: "Revisar y actualizar regularmente los procesos de reclutamiento y selección para eliminar sesgos y prejuicios." },
+        { texto: "Ofrecer formación y capacitación a los responsables de selección para promover prácticas justas e inclusivas." }
       ]
     }
   ]
@@ -299,7 +410,7 @@ const ods = {
 
 
 
-
+/* REVISAR PORQUE NO SE GUARDA LAS RESPUESTAS B EN EL MAPEO */
 
 let indicePreguntaActual = 0;
 let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
