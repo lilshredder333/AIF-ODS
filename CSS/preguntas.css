@@ -105,30 +105,5 @@ main {
 }
 
 @media only screen and (min-width:768px){
-    header{
-        height: 100px;
-    }
-
-    #logo{
-        width: 13%;
-        margin-left: 42.5%;
-    }
-
-    main{
-        padding-top: 10%;
-    }
-
-    #contenedor-btns button{
-        width: 10%;
-    }
-
-    .contenedor-pregunta{
-        min-width: 400px;
-        min-height: 700px;
-
-    }
-
-    .contenedor-respuestas{
-        flex-direction: row;
-    }
+/* ayuda miguel angel */
 }
