@@ -8,7 +8,6 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url('../IMG/bg.jpg');
     background-repeat: no-repeat;
     background-size: auto;
 }
@@ -20,17 +19,20 @@ a {
 header {
     width: 100%;
     position: fixed;
-    background-color: white;
+    background-color: #F3DAD8;
     height: 65px;
     top: 0;
     display: flex;
+
 }
 
-#logo{
-    width: 23%;
-    justify-self: center;
-    align-self: center;
-    margin-left: 37%
+#logo-mobile{
+    width: 130px;
+
+}
+
+#logo-web{
+    width: 10%;
 }
 
 main {
@@ -59,7 +61,7 @@ main {
 
 #contenedor-btns button {
     width: 25%;
-    background-color: rgb(10, 35, 4);
+    background-color: #F3DAD8;
     border: solid 1px white;
     border-radius: 10px;
     padding: 2%;
@@ -71,10 +73,10 @@ main {
     min-width: 70%;
     min-height: 500px;
     max-height: 800px;
-    background-color: rgb(10, 35, 4);
+    background-color: #F3DAD8;
     margin: 2%;
     padding: 5%;
-    color: white;
+    color: #453643;
     border-radius: 10px;
     font-size: 12px;
     display: flex;
@@ -86,8 +88,8 @@ main {
     display: flex;
     padding: 2%;
     margin: 2%;
-    color: white;
-    border: solid 1px white;
+    color: #453643;
+    border: solid 1px #FF1D0D;
     border-radius: 10px;
     text-align: justify;
 }
