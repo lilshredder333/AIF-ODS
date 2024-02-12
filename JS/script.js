@@ -301,8 +301,6 @@ const ods = {
 
 
 
-
-
 let indicePreguntaActual = 0;
 let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
 let puntuacionTotal = 0; // Almacena la puntuación total
@@ -376,6 +374,50 @@ function guardarRespuestaSeleccionada() {
   }
 }
 
+// Función para obtener el contenido HTML según la puntuación total
+function obtenerContenidoSegunPuntuacion(puntuacionTotal) {
+  let contenidoHTML = "";
+
+  if (puntuacionTotal < 75) {
+    // Mostrar todas las recomendaciones
+    ods.pregunta.forEach(pregunta => {
+      pregunta.recomendaciones.forEach(recomendacion => {
+        contenidoHTML += `<div class="recomendacion">${recomendacion.texto}</div>`;
+      });
+    });
+    // Mostrar mensaje y emoticono
+    contenidoHTML = `<h3>¡Espabila!</h3><img src="enfadado.png" alt="enfadado">${contenidoHTML}`;
+  } else if (puntuacionTotal >= 75 && puntuacionTotal <= 100) {
+    // Mostrar solo las 2 primeras recomendaciones por pregunta
+    let mostradasPorPregunta = 0;
+    ods.pregunta.forEach(pregunta => {
+      pregunta.recomendaciones.slice(0, 2).forEach(recomendacion => {
+        contenidoHTML += `<div class="recomendacion">${recomendacion.texto}</div>`;
+      });
+    });
+    // Mostrar mensaje y emoticono
+    contenidoHTML = `<h3>Mejorable</h3><h4>Confiamos en ti</h4><img src="triste.png" alt="triste">${contenidoHTML}`;
+  } else if (puntuacionTotal >= 100 && puntuacionTotal <= 139) {
+    // Mostrar solo una recomendación por pregunta
+    ods.pregunta.forEach(pregunta => {
+      if (pregunta.recomendaciones.length > 0) {
+        contenidoHTML += `<div class="recomendacion">${pregunta.recomendaciones[0].texto}</div>`;
+      }
+    });
+    // Mostrar mensaje y emoticono
+    contenidoHTML = `<h3>Por el buen camino</h3><h4>Siga trabajando en ello</h4><img src="like.png" alt="like">${contenidoHTML}`;
+  } else if (puntuacionTotal >= 140 && puntuacionTotal <= 150) {
+    // No mostrar recomendaciones
+    contenidoHTML = "";
+  } else if (puntuacionTotal > 150) {
+    // Mostrar mensaje y emoticono
+    contenidoHTML = `<h3>¡Excelente!</h3><h4>Sigue así</h4><img src="estrellitas.png" alt="estrellitas">`;
+  }
+
+  // Insertar el contenido en el elemento con id "resultado"
+  document.getElementById("resultado").innerHTML = contenidoHTML;
+}
+
 // Mostrar la primera pregunta al cargar la página
 mostrarPregunta(indicePreguntaActual);
 
@@ -383,21 +425,5 @@ mostrarPregunta(indicePreguntaActual);
 document.getElementById("btnNext").addEventListener("click", mostrarPreguntaSiguiente);
 document.getElementById("btnPrev").addEventListener("click", mostrarPreguntaAnterior);
 
-// Función para obtener el contenido HTML según la puntuación total
-function obtenerContenidoSegunPuntuacion() {
-  // Lógica para determinar el contenido HTML según la puntuación total
-  let contenidoHTML;
-  
-  if (puntuacionTotal >= 20) {
-    contenidoHTML = "<h3>Felicidades, obtuviste una puntuación alta.</h3>";
-  }
-  else {
-    contenidoHTML = "<h3>Tu puntuación no alcanza el umbral necesario.</h3>";
-  }
-
-  // Insertar el contenido en el elemento con id "resultado"
-  document.getElementById("resultado").innerHTML = contenidoHTML;
-}
-
 // Llamar a la función para obtener el contenido según la puntuación total
-obtenerContenidoSegunPuntuacion();
+obtenerContenidoSegunPuntuacion(puntuacionTotal);
