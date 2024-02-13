@@ -265,107 +265,149 @@ const ods = {
 
 
 
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", function () {
+  mostrarPregunta(0); // Llama a la función para mostrar la primera pregunta cuando el DOM esté completamente cargado
+});
 
 let indicePreguntaActual = 0;
 let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
-let puntuacionTotal = 0; // Almacena la puntuación total
 
+// Función para mostrar la pregunta actual en el formulario
 function mostrarPregunta(indice) {
+  // Obtengo la pregunta actual del conjunto de datos
   const pregunta = ods.pregunta[indice];
 
+  // Selecciono el contenedor donde se mostrará la pregunta y las respuestas
   const contenedorPreguntas = document.getElementById("contenedor-form");
   contenedorPreguntas.innerHTML = "";
 
-  let contenedorPregunta = document.createElement("div");
+  // Creo un contenedor para la pregunta actual
+  const contenedorPregunta = document.createElement("div");
   contenedorPregunta.classList.add("contenedor-pregunta");
 
-  let textoPregunta = document.createElement("h2");
+  // Creo un elemento de encabezado para mostrar el texto de la pregunta
+  const textoPregunta = document.createElement("h2");
   textoPregunta.textContent = pregunta.texto;
 
+  // Añado el texto de la pregunta al contenedor de la pregunta
   contenedorPregunta.appendChild(textoPregunta);
 
-  pregunta.respuesta.forEach(function (respuesta) {
-    let contenedorRespuestas = document.createElement("div");
-    contenedorRespuestas.classList.add("contenedor-respuestas");
+  // Creo un contenedor para todas las respuestas de la pregunta actual
+  const contenedorRespuestas = document.createElement("div");
+  contenedorRespuestas.classList.add("contenedor-respuestas");
 
-    let inputRespuesta = document.createElement("input");
-    inputRespuesta.type = "radio";
-    inputRespuesta.name = pregunta.texto; // Asignar nombre único a cada grupo de radio buttons
-    inputRespuesta.value = respuesta.valor;
-    inputRespuesta.checked = respuestasSeleccionadas.has(pregunta.texto) && respuestasSeleccionadas.get(pregunta.texto) === respuesta.valor; // Marcar la respuesta seleccionada anteriormente
+  // Creo los divs de respuesta utilizando map
+  pregunta.respuesta.forEach((respuesta, index) => {
+    const divRespuesta = document.createElement("div");
+    divRespuesta.classList.add("respuesta");
+    divRespuesta.textContent = respuesta.texto; // Añado el texto de la respuesta al div
+    divRespuesta.dataset.valor = respuesta.valor; // Almaceno el valor de la respuesta como un atributo de datos
 
-    let labelRespuesta = document.createElement("label");
-    // labelRespuesta.classList.add("btn", "btn-primary"); // Estilo similar al botón de Bootstrap
-    labelRespuesta.textContent = respuesta.texto;
+    // Verificar si la respuesta está seleccionada y aplicar la clase 'active' si es necesario
+    const preguntaActual = pregunta.texto;
+    if (respuestasSeleccionadas.has(preguntaActual) && respuestasSeleccionadas.get(preguntaActual) === respuesta.valor) {
+      divRespuesta.classList.add("active");
+    }
 
-    contenedorRespuestas.appendChild(inputRespuesta);
-    contenedorRespuestas.appendChild(labelRespuesta);
-    contenedorPregunta.appendChild(contenedorRespuestas);
+    // Agrego un evento de clic para seleccionar la respuesta, actualizar el botón de "Siguiente" y habilitar el botón si una respuesta está seleccionada
+    divRespuesta.addEventListener("click", () => {
+      seleccionarRespuesta(indice, index, divRespuesta);
+      actualizarBotonSiguiente(indice);
+    });
+
+    contenedorRespuestas.appendChild(divRespuesta);
   });
 
-  contenedorPreguntas.appendChild(contenedorPregunta);
-}
+  // Añado el contenedor de respuestas al contenedor de la pregunta
+  contenedorPregunta.appendChild(contenedorRespuestas);
 
-function mostrarPreguntaSiguiente() {
-  if (indicePreguntaActual > 0) { // Si no estamos en la primera pregunta
-    const radios = document.querySelectorAll('input[type="radio"]:checked');
-    if (radios.length === 0) {
-      alert("Por favor, selecciona una respuesta antes de continuar.");
-      return;
-    }
+  // Añado el contenedor de la pregunta al contenedor principal del formulario
+  contenedorPreguntas.appendChild(contenedorPregunta);
+
+  // Creo los botones de siguiente y anterior según el índice de la pregunta
+  const contenedorBotones = document.createElement("div");
+  contenedorBotones.classList.add("contenedor-botones");
+
+  // Si no es la primera pregunta, creo el botón de "Anterior"
+  if (indice > 0 && indice < ods.pregunta.length - 1) {
+    const btnPrev = crearBoton("Anterior", mostrarPreguntaAnterior);
+    contenedorBotones.appendChild(btnPrev);
   }
 
+  // Creo el botón de "Siguiente" o "Finalizar" según el índice de la pregunta
+  const btnText = (indice === ods.pregunta.length - 1) ? "Finalizar" : "Siguiente";
+  const btnNext = crearBoton(btnText, () => {
+    if (indice === ods.pregunta.length - 1) {
+      window.location.href = "recomendaciones.html"; // Redirijo al usuario a la página "recomendaciones.html" al finalizar
+    } else {
+      if (respuestasSeleccionadas.has(pregunta.texto)) { // Verifica si se ha seleccionado una respuesta
+        mostrarPreguntaSiguiente();
+      } else {
+        alert("Por favor, selecciona una respuesta antes de continuar.");
+      }
+    }
+  });
+
+  // Habilitar el botón de "Siguiente" si una respuesta está seleccionada
+  if (respuestasSeleccionadas.has(pregunta.texto)) {
+    btnNext.disabled = false;
+  }
+
+  contenedorBotones.appendChild(btnNext);
+
+  // Añado el contenedor de botones al contenedor principal del formulario
+  contenedorPreguntas.appendChild(contenedorBotones);
+}
+
+
+
+// Función para crear un botón con un texto y una función de clic
+function crearBoton(texto, onClick) {
+  const btn = document.createElement("button");
+  btn.textContent = texto;
+  btn.addEventListener("click", onClick);
+  return btn;
+}
+
+// Función para almacenar la respuesta seleccionada en el mapa de respuestas seleccionadas
+function seleccionarRespuesta(indicePregunta, indiceRespuesta, divRespuesta) {
+  const preguntaActual = ods.pregunta[indicePregunta].texto;
+  const valorRespuesta = ods.pregunta[indicePregunta].respuesta[indiceRespuesta].valor;
+
+  // Verificar si la respuesta seleccionada ya tiene la clase 'active'
+  const respuestaActiva = divRespuesta.classList.contains('active');
+
+  if (respuestaActiva) {
+    // Si ya está seleccionada, deseleccionarla eliminando la clase 'active'
+    divRespuesta.classList.remove('active');
+    respuestasSeleccionadas.delete(preguntaActual); // Eliminar la respuesta del mapa
+  } else {
+    // Si no está seleccionada, seleccionarla agregando la clase 'active'
+    // Primero, deseleccionar todas las respuestas en caso de que solo se permita una respuesta
+    const respuestas = document.querySelectorAll('.respuesta');
+    respuestas.forEach(respuesta => {
+      respuesta.classList.remove('active');
+    });
+    // Luego, seleccionar la respuesta actual
+    divRespuesta.classList.add('active');
+    // Almacenar la respuesta seleccionada en el mapa
+    respuestasSeleccionadas.set(preguntaActual, valorRespuesta);
+  }
+}
+
+
+// Función para mostrar la siguiente pregunta
+function mostrarPreguntaSiguiente() {
   if (indicePreguntaActual < ods.pregunta.length - 1) {
-    guardarRespuestaSeleccionada(); // Guardar la respuesta seleccionada antes de avanzar
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
   }
 }
 
+// Función para mostrar la pregunta anterior
 function mostrarPreguntaAnterior() {
   if (indicePreguntaActual > 0) {
     indicePreguntaActual--;
     mostrarPregunta(indicePreguntaActual);
   }
 }
-
-function guardarRespuestaSeleccionada() {
-  const radios = document.querySelectorAll('input[type="radio"]:checked');
-  if (radios.length > 0) {
-    const preguntaActual = ods.pregunta[indicePreguntaActual].texto;
-    const valorRespuesta = parseInt(radios[0].value);
-    respuestasSeleccionadas.set(preguntaActual, valorRespuesta);
-    puntuacionTotal += valorRespuesta; // Actualizar la puntuación total
-  }
-}
-
-// Mostrar la primera pregunta al cargar la página
-mostrarPregunta(indicePreguntaActual);
-
-// Manejadores de eventos para los botones
-document.getElementById("btnNext").addEventListener("click", mostrarPreguntaSiguiente);
-document.getElementById("btnPrev").addEventListener("click", mostrarPreguntaAnterior);
-
-// Función para obtener el contenido HTML según la puntuación total
-function obtenerContenidoSegunPuntuacion() {
-  // Lógica para determinar el contenido HTML según la puntuación total
-  let contenidoHTML;
-  
-  if (puntuacionTotal >= 20) {
-    contenidoHTML = "<h3>Felicidades, obtuviste una puntuación alta.</h3>";
-  }
-  else {
-    contenidoHTML = "<h3>Tu puntuación no alcanza el umbral necesario.</h3>";
-  }
-
-  // Insertar el contenido en el elemento con id "resultado"
-  document.getElementById("resultado").innerHTML = contenidoHTML;
-}
-
-// Llamar a la función para obtener el contenido según la puntuación total
-obtenerContenidoSegunPuntuacion();

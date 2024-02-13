@@ -80,7 +80,7 @@ main {
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    
 }
 
 .contenedor-respuestas {
@@ -91,45 +91,29 @@ main {
     border: solid 1px #FF1D0D;
     border-radius: 10px;
     text-align: justify;
+    flex-direction: column;
+    min-height: 450px;
+    justify-content: space-around;
 }
 
-.contenedor-respuestas input {
-    margin: 2%;
+.respuesta{
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 2%;
+
 }
 
+.active{
+    background-color: white;
+    color:rgb(10, 35, 4);
+}
 
-
-.contenedor-respuestas:hover {
+.respuesta:hover {
     background-color: white;
     ;
     color: rgb(10, 35, 4)
 }
 
 @media only screen and (min-width:768px){
-    header{
-        height: 100px;
-    }
-
-    #logo{
-        width: 13%;
-        margin-left: 42.5%;
-    }
-
-    main{
-        padding-top: 10%;
-    }
-
-    #contenedor-btns button{
-        width: 10%;
-    }
-
-    .contenedor-pregunta{
-        min-width: 400px;
-        min-height: 700px;
-
-    }
-
-    .contenedor-respuestas{
-        flex-direction: row;
-    }
+/* ayuda miguel angel */
 }
