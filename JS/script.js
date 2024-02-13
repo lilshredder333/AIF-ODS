@@ -263,6 +263,15 @@ const ods = {
   ]
 }
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  mostrarPregunta(0); // Llama a la función para mostrar la primera pregunta cuando el DOM esté completamente cargado
+});
+
+let indicePreguntaActual = 0;
+let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
+
 // Función para mostrar la pregunta actual en el formulario
 function mostrarPregunta(indice) {
   // Obtengo la pregunta actual del conjunto de datos
@@ -288,20 +297,26 @@ function mostrarPregunta(indice) {
   contenedorRespuestas.classList.add("contenedor-respuestas");
 
   // Creo los divs de respuesta utilizando map
-  const divsRespuestas = pregunta.respuesta.map((respuesta) => {
+  pregunta.respuesta.forEach((respuesta, index) => {
     const divRespuesta = document.createElement("div");
     divRespuesta.classList.add("respuesta");
     divRespuesta.textContent = respuesta.texto; // Añado el texto de la respuesta al div
     divRespuesta.dataset.valor = respuesta.valor; // Almaceno el valor de la respuesta como un atributo de datos
 
-    // Agrego un evento de clic para seleccionar la respuesta
-    divRespuesta.addEventListener("click", () => seleccionarRespuesta(pregunta.texto, respuesta.valor));
+    // Verificar si la respuesta está seleccionada y aplicar la clase 'active' si es necesario
+    const preguntaActual = pregunta.texto;
+    if (respuestasSeleccionadas.has(preguntaActual) && respuestasSeleccionadas.get(preguntaActual) === respuesta.valor) {
+      divRespuesta.classList.add("active");
+    }
 
-    return divRespuesta;
+    // Agrego un evento de clic para seleccionar la respuesta, actualizar el botón de "Siguiente" y habilitar el botón si una respuesta está seleccionada
+    divRespuesta.addEventListener("click", () => {
+      seleccionarRespuesta(indice, index, divRespuesta);
+      actualizarBotonSiguiente(indice);
+    });
+
+    contenedorRespuestas.appendChild(divRespuesta);
   });
-
-  // Añado los divs de respuesta al contenedor de respuestas
-  divsRespuestas.forEach((divRespuesta) => contenedorRespuestas.appendChild(divRespuesta));
 
   // Añado el contenedor de respuestas al contenedor de la pregunta
   contenedorPregunta.appendChild(contenedorRespuestas);
@@ -325,14 +340,26 @@ function mostrarPregunta(indice) {
     if (indice === ods.pregunta.length - 1) {
       window.location.href = "recomendaciones.html"; // Redirijo al usuario a la página "recomendaciones.html" al finalizar
     } else {
-      mostrarPreguntaSiguiente();
+      if (respuestasSeleccionadas.has(pregunta.texto)) { // Verifica si se ha seleccionado una respuesta
+        mostrarPreguntaSiguiente();
+      } else {
+        alert("Por favor, selecciona una respuesta antes de continuar.");
+      }
     }
   });
+
+  // Habilitar el botón de "Siguiente" si una respuesta está seleccionada
+  if (respuestasSeleccionadas.has(pregunta.texto)) {
+    btnNext.disabled = false;
+  }
+
   contenedorBotones.appendChild(btnNext);
 
   // Añado el contenedor de botones al contenedor principal del formulario
   contenedorPreguntas.appendChild(contenedorBotones);
 }
+
+
 
 // Función para crear un botón con un texto y una función de clic
 function crearBoton(texto, onClick) {
@@ -343,7 +370,44 @@ function crearBoton(texto, onClick) {
 }
 
 // Función para almacenar la respuesta seleccionada en el mapa de respuestas seleccionadas
-function seleccionarRespuesta(pregunta, valor) {
-  respuestasSeleccionadas.set(pregunta, valor);
+function seleccionarRespuesta(indicePregunta, indiceRespuesta, divRespuesta) {
+  const preguntaActual = ods.pregunta[indicePregunta].texto;
+  const valorRespuesta = ods.pregunta[indicePregunta].respuesta[indiceRespuesta].valor;
+
+  // Verificar si la respuesta seleccionada ya tiene la clase 'active'
+  const respuestaActiva = divRespuesta.classList.contains('active');
+
+  if (respuestaActiva) {
+    // Si ya está seleccionada, deseleccionarla eliminando la clase 'active'
+    divRespuesta.classList.remove('active');
+    respuestasSeleccionadas.delete(preguntaActual); // Eliminar la respuesta del mapa
+  } else {
+    // Si no está seleccionada, seleccionarla agregando la clase 'active'
+    // Primero, deseleccionar todas las respuestas en caso de que solo se permita una respuesta
+    const respuestas = document.querySelectorAll('.respuesta');
+    respuestas.forEach(respuesta => {
+      respuesta.classList.remove('active');
+    });
+    // Luego, seleccionar la respuesta actual
+    divRespuesta.classList.add('active');
+    // Almacenar la respuesta seleccionada en el mapa
+    respuestasSeleccionadas.set(preguntaActual, valorRespuesta);
+  }
 }
 
+
+// Función para mostrar la siguiente pregunta
+function mostrarPreguntaSiguiente() {
+  if (indicePreguntaActual < ods.pregunta.length - 1) {
+    indicePreguntaActual++;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
+
+// Función para mostrar la pregunta anterior
+function mostrarPreguntaAnterior() {
+  if (indicePreguntaActual > 0) {
+    indicePreguntaActual--;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
