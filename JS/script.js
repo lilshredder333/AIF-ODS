@@ -1,3 +1,5 @@
+
+
 const ods = {
   pregunta: [
     {
@@ -407,7 +409,6 @@ const ods = {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   mostrarPregunta(0); // Llama a la función para mostrar la primera pregunta cuando el DOM esté completamente cargado
 });
@@ -500,9 +501,17 @@ function mostrarPregunta(indice) {
 
   // Añado el contenedor de botones al contenedor principal del formulario
   contenedorPreguntas.appendChild(contenedorBotones);
+
+  // Calcular la puntuación total del usuario
+  let puntuacionTotal = calcularPuntuacionTotal();
+
+  // Calcular la cantidad de recomendaciones según la puntuación
+  let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
+
+  // Mostrar la puntuación total y las recomendaciones
+  mostrarPuntuacionTotal(puntuacionTotal);
+  generarRecomendaciones();
 }
-
-
 
 // Función para crear un botón con un texto y una función de clic
 function crearBoton(texto, onClick) {
@@ -538,7 +547,6 @@ function seleccionarRespuesta(indicePregunta, indiceRespuesta, divRespuesta) {
   }
 }
 
-
 // Función para mostrar la siguiente pregunta
 function mostrarPreguntaSiguiente() {
   if (indicePreguntaActual < ods.pregunta.length - 1) {
@@ -555,21 +563,14 @@ function mostrarPreguntaAnterior() {
   }
 }
 
-// Calcular la puntuación total del usuario
-let puntuacionTotal = calcularPuntuacionTotal();
-
-// Calcular la cantidad de recomendaciones según la puntuación
-let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
-
-// Mostrar la puntuación total y las recomendaciones
-mostrarPuntuacionTotal(puntuacionTotal);
-generarRecomendaciones(cantidadRecomendaciones);
-
-
 function calcularPuntuacionTotal() {
-  // Aquí puedes calcular la puntuación total del usuario
-  // Supongamos que la puntuación total está almacenada en una variable llamada 'puntuacionTotal'
-  let puntuacionTotal = 100; // Ejemplo de puntuación total
+  let puntuacionTotal = 0;
+
+  // Recorrer el mapa de respuestas seleccionadas y sumar los valores
+  respuestasSeleccionadas.forEach((valor) => {
+    puntuacionTotal += valor;
+  });
+
   return puntuacionTotal;
 }
 
@@ -590,25 +591,34 @@ function calcularCantidadRecomendaciones(puntuacionTotal) {
 function mostrarPuntuacionTotal(puntuacionTotal) {
   const resultadoContainer = document.getElementById('resultado');
   const puntuacionTotalContainer = document.createElement('div');
-  const puntuacionMaxima = 'Puntuación máxima' + 140;
-  puntuacionMaxima = document.createElement('div');
-  puntuacionMaxima.id = 'puntuacion-maxima';
+  const puntuacionMaximaContainer = document.createElement('div');
+
   puntuacionTotalContainer.id = 'puntuacion-total';
+  puntuacionMaximaContainer.id = 'puntuacion-maxima';
+
   puntuacionTotalContainer.textContent = 'Puntuación Total: ' + puntuacionTotal;
-  resultadoContainer.appendChild(puntuacionMaxima);
+  puntuacionMaximaContainer.textContent = 'Puntuación Máxima: 140';
+
   resultadoContainer.appendChild(puntuacionTotalContainer);
+  resultadoContainer.appendChild(puntuacionMaximaContainer);
 }
 
-function generarRecomendaciones(cantidadRecomendaciones) {
+function generarRecomendaciones() {
   const resultadoContainer = document.getElementById('resultado');
   const recomendacionesContenedor = document.createElement('div');
   recomendacionesContenedor.id = 'recomendaciones-contenedor';
   resultadoContainer.appendChild(recomendacionesContenedor);
 
-  // Aquí puedes generar las recomendaciones dinámicamente y agregarlas al contenedor
-  for (let i = 0; i < cantidadRecomendaciones; i++) {
-    const recomendacion = document.createElement('div');
-    recomendacion.textContent = 'Recomendación ' + (i + 1);
-    recomendacionesContenedor.appendChild(recomendacion);
-  }
+  // Calcular la cantidad de recomendaciones según la puntuación total
+  let puntuacionTotal = calcularPuntuacionTotal();
+  let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
+
+  // Recorremos las preguntas y generamos las recomendaciones según la cantidad calculada
+  ods.pregunta.forEach((pregunta, indicePregunta) => {
+    pregunta.recomendaciones.slice(0, cantidadRecomendaciones).forEach((recomendacion, index) => {
+      const recomendacionElemento = document.createElement('div');
+      recomendacionElemento.textContent = `Pregunta ${indicePregunta + 1}, Recomendación ${index + 1}: ${recomendacion.texto}`;
+      recomendacionesContenedor.appendChild(recomendacionElemento);
+    });
+  });
 }
