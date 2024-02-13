@@ -53,4 +53,33 @@ main {
     width: 90%;
     background-color: #F3DAD8;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#puntuacion-total{
+    border: solid 2px red;
+    padding: 2%;
+}
+
+#puntuacion-maxima{
+    border: solid 2px blue;
+    padding: 2%;
+}
+
+#recomendaciones-contenedor{
+    border: solid 2px green;
+    padding: 2%;
+}
+
+.recomendacion-elemento{
+    border: solid 2px orange;
+    padding: 2%;    
+}
+
+#mensaje-adicional{
+    position: absolute;
+    top: 0;
 }

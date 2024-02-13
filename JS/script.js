@@ -597,7 +597,7 @@ function mostrarPuntuacionTotal(puntuacionTotal) {
   puntuacionMaximaContainer.id = 'puntuacion-maxima';
 
   puntuacionTotalContainer.textContent = 'Puntuación Total: ' + puntuacionTotal;
-  puntuacionMaximaContainer.textContent = 'Puntuación Máxima: 140';
+  puntuacionMaximaContainer.textContent = 'Puntuación Máxima: 150';
 
   resultadoContainer.appendChild(puntuacionTotalContainer);
   resultadoContainer.appendChild(puntuacionMaximaContainer);
@@ -615,10 +615,54 @@ function generarRecomendaciones() {
 
   // Recorremos las preguntas y generamos las recomendaciones según la cantidad calculada
   ods.pregunta.forEach((pregunta, indicePregunta) => {
-    pregunta.recomendaciones.slice(0, cantidadRecomendaciones).forEach((recomendacion, index) => {
-      const recomendacionElemento = document.createElement('div');
-      recomendacionElemento.textContent = `Pregunta ${indicePregunta + 1}, Recomendación ${index + 1}: ${recomendacion.texto}`;
-      recomendacionesContenedor.appendChild(recomendacionElemento);
+    const recomendacionElemento = document.createElement('div');
+    recomendacionElemento.classList.add('recomendacion-elemento');
+    recomendacionElemento.textContent = `Pregunta: ${pregunta.texto}`;
+    recomendacionesContenedor.appendChild(recomendacionElemento);
+
+    recomendacionElemento.addEventListener('click', () => {
+      mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacionElemento);
     });
   });
+
+  // Agregar mensaje adicional basado en la puntuación del usuario una sola vez
+  const mensajeAdicional = document.createElement('p');
+  mensajeAdicional.id = 'mensaje-adicional'
+  mensajeAdicional.textContent = obtenerMensajeAdicional(puntuacionTotal);
+  resultadoContainer.appendChild(mensajeAdicional);
 }
+
+
+function obtenerMensajeAdicional(puntuacionTotal) {
+  if (puntuacionTotal < 75) {
+    return "MAL 🙁 ESPABILA 😡";
+  } else if (puntuacionTotal >= 75 && puntuacionTotal < 100) {
+    return "MEJORABLE 😕 CONFIAMOS EN TI 😔";
+  } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
+    return "POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍";
+  } else {
+    return "EXCELENTE 😃 SIGUE ASÍ 🌟";
+  }
+}
+
+
+function mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacionElemento) {
+  const recomendaciones = pregunta.recomendaciones.slice(0, cantidadRecomendaciones);
+  const recomendacionesTexto = recomendaciones.map((recomendacion, index) => {
+    return `Recomendación ${index + 1}: ${recomendacion.texto}`;
+  });
+  
+  // Verificar si ya se han mostrado las recomendaciones
+  const recomendacionesMostradas = recomendacionElemento.querySelector('.recomendaciones');
+  if (recomendacionesMostradas) {
+    // Si ya están visibles, eliminarlas del contenedor
+    recomendacionElemento.removeChild(recomendacionesMostradas);
+  } else {
+    // Si no están visibles, agregarlas al contenedor
+    const recomendacionesContainer = document.createElement('div');
+    recomendacionesContainer.classList.add('recomendaciones');
+    recomendacionesContainer.textContent = recomendacionesTexto.join('\n');
+    recomendacionElemento.appendChild(recomendacionesContainer);
+  }
+}
+
