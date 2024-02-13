@@ -411,3 +411,61 @@ function mostrarPreguntaAnterior() {
     mostrarPregunta(indicePreguntaActual);
   }
 }
+
+// Calcular la puntuación total del usuario
+let puntuacionTotal = calcularPuntuacionTotal();
+
+// Calcular la cantidad de recomendaciones según la puntuación
+let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
+
+// Mostrar la puntuación total y las recomendaciones
+mostrarPuntuacionTotal(puntuacionTotal);
+generarRecomendaciones(cantidadRecomendaciones);
+
+
+function calcularPuntuacionTotal() {
+  // Aquí puedes calcular la puntuación total del usuario
+  // Supongamos que la puntuación total está almacenada en una variable llamada 'puntuacionTotal'
+  let puntuacionTotal = 100; // Ejemplo de puntuación total
+  return puntuacionTotal;
+}
+
+function calcularCantidadRecomendaciones(puntuacionTotal) {
+  let cantidadRecomendaciones = 0;
+  if (puntuacionTotal < 75) {
+    cantidadRecomendaciones = ods.pregunta.length; // Mostrar todas las recomendaciones
+  } else if (puntuacionTotal >= 75 && puntuacionTotal <= 100) {
+    cantidadRecomendaciones = 2; // Mostrar las 2 primeras recomendaciones por pregunta
+  } else if (puntuacionTotal >= 101 && puntuacionTotal <= 139) {
+    cantidadRecomendaciones = 1; // Mostrar una recomendación por pregunta
+  } else {
+    cantidadRecomendaciones = 0; // No recibir recomendaciones
+  }
+  return cantidadRecomendaciones;
+}
+
+function mostrarPuntuacionTotal(puntuacionTotal) {
+  const resultadoContainer = document.getElementById('resultado');
+  const puntuacionTotalContainer = document.createElement('div');
+  const puntuacionMaxima = 'Puntuación máxima' + 140;
+  puntuacionMaxima = document.createElement('div');
+  puntuacionMaxima.id = 'puntuacion-maxima';
+  puntuacionTotalContainer.id = 'puntuacion-total';
+  puntuacionTotalContainer.textContent = 'Puntuación Total: ' + puntuacionTotal;
+  resultadoContainer.appendChild(puntuacionMaxima);
+  resultadoContainer.appendChild(puntuacionTotalContainer);
+}
+
+function generarRecomendaciones(cantidadRecomendaciones) {
+  const resultadoContainer = document.getElementById('resultado');
+  const recomendacionesContenedor = document.createElement('div');
+  recomendacionesContenedor.id = 'recomendaciones-contenedor';
+  resultadoContainer.appendChild(recomendacionesContenedor);
+
+  // Aquí puedes generar las recomendaciones dinámicamente y agregarlas al contenedor
+  for (let i = 0; i < cantidadRecomendaciones; i++) {
+    const recomendacion = document.createElement('div');
+    recomendacion.textContent = 'Recomendación ' + (i + 1);
+    recomendacionesContenedor.appendChild(recomendacion);
+  }
+}
