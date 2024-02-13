@@ -626,24 +626,27 @@ function generarRecomendaciones() {
   });
 
   // Agregar mensaje adicional basado en la puntuación del usuario una sola vez
-  const mensajeAdicional = document.createElement('p');
-  mensajeAdicional.id = 'mensaje-adicional'
-  mensajeAdicional.textContent = obtenerMensajeAdicional(puntuacionTotal);
+  const mensajeAdicional = obtenerMensajeAdicional(puntuacionTotal);
+  mensajeAdicional.id = 'mensaje-adicional';
   resultadoContainer.appendChild(mensajeAdicional);
 }
 
 
 function obtenerMensajeAdicional(puntuacionTotal) {
+  const mensajeAdicional = document.createElement('div');
   if (puntuacionTotal < 75) {
-    return "MAL 🙁 ESPABILA 😡";
+    mensajeAdicional.innerHTML = `MAL 🙁 ESPABILA 😡<br>Haz click para ver tus recomendaciones`;
   } else if (puntuacionTotal >= 75 && puntuacionTotal < 100) {
-    return "MEJORABLE 😕 CONFIAMOS EN TI 😔";
+    mensajeAdicional.innerHTML = `MEJORABLE 😕 CONFIAMOS EN TI 😔<br>Haz click para ver tus recomendaciones`;
   } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
-    return "POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍";
+    mensajeAdicional.innerHTML = `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`;
   } else {
-    return "EXCELENTE 😃 SIGUE ASÍ 🌟";
+    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ 🌟<br>Haz click para ver tus recomendaciones`;
   }
+  return mensajeAdicional;
 }
+
+
 
 
 function mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacionElemento) {
@@ -665,4 +668,3 @@ function mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacion
     recomendacionElemento.appendChild(recomendacionesContainer);
   }
 }
-
