@@ -13,6 +13,7 @@ body {
     background-image: url('../IMG/bg.jpg');
     background-repeat: no-repeat;
     background-size: auto;
+    overflow: hidden;
 }
 
 main{
@@ -30,8 +31,11 @@ main{
 
 #personaje{
     width: 50%;
+    max-width: 200px;
     position: absolute;
-    top: 50%;
+/*     top: 50%; */
+/*     margin-left: 15%; */
+    bottom: -1.5%;
     animation: movimientoPersonaje 2s ease-in-out;
     animation-fill-mode: both;
 }
@@ -39,21 +43,25 @@ main{
 @keyframes movimientoPersonaje {
 0% {left: 20%}
 
-100%{ left: 5%;}
+100% {left: 0%}
 }
 
 #personaje img{
     width: 100%;
+    max-width: 200px;
 }
 
 #bocadillo{
     width: 50%;
+    min-width: 210px;
+    max-width: 300px;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 30%;
-    right: -25%;
+/*     top: 30%; */
+    bottom: 40%;
+/*     right: -25%; */
     animation: movimientoBocadillo 2s ease-in-out;
     animation-fill-mode: both;
 }
@@ -66,26 +74,26 @@ main{
 
 #bocadillo img{
     width: 100%;
-
 }
 
 #mensajeIntro{
-    width: 80%;
-    font-size: 12.9px;
+    width: 70%;
+    font-size: 11px;
     text-align: center;
-    padding: 4%;
+/*     padding: 4%; */
     font-weight: 600;
     position: absolute;
 }
 
 #botonAdelante{
+    min-width: 110px;
     width: 50%;
     background-color:  white;
     height: 45px;
     border-radius: 20px;
     display: flex;
     position: absolute;
-    top: 0;
+/*     top: 0; */
     visibility: hidden;
     animation: movimientoBoton 2s ease-in-out;
     animation-fill-mode: both;
@@ -96,7 +104,7 @@ main{
 
 70%{ top: 0%; visibility: hidden;}
 
-100%{top: 20%; visibility: visible;}
+100%{top: 15%; visibility: visible;}
 }
 
 #botonAdelante button{
@@ -112,6 +120,76 @@ main{
     font-size: 20px;
 }
 
+@media only screen and (min-width:440px){
+    #personaje{
+        width: 80%;
+        max-width: 220px;
+        position: absolute;
+        bottom: -2%;
+        overflow: hidden;
+    }
+
+    #personaje img{
+        width: 100%;
+    }
+
+    #bocadillo{
+        max-width: 210px;
+    }
+
+    @keyframes movimientoBocadillo {
+        0% {left: 180%}
+        100%{left: 180px;}
+    }
+
+/*     #botonAdelante{
+        right: 5%;
+        bottom: 5%;
+    }
+
+    @keyframes movimientoBoton {
+    0% {left: 0%; visibility: hidden;}
+
+    70%{left: 0%; visibility: hidden;}
+
+    100%{left: 45%; visibility: visible;}
+} */
+    
+}
+
 @media only screen and (min-width:768px){
-    /* ayuda miguel angeeeeeeeeeeel jajjajajja */
+    #personaje{
+        width: 100%;
+        max-width: none;
+        position: absolute;
+        bottom: -2%;
+        overflow: hidden;
+    }
+
+    #personaje img{
+        width: 100%;
+    }
+
+    #bocadillo{
+        max-width: 250px;
+    }
+
+    @keyframes movimientoBocadillo {
+        0% {left: 180%}
+        100%{left: 180px}
+    }
+
+    #botonAdelante{
+        right: 5%;
+        bottom: 5%;
+    }
+
+    @keyframes movimientoBoton {
+    0% {left: 0%; visibility: hidden;}
+
+    70%{left: 0%; visibility: hidden;}
+
+    100%{left: 45%; visibility: visible;}
+}
+    
 }
