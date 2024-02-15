@@ -30,7 +30,6 @@ body {
 }
 
 .logo {
-    background: url('ruta-de-tu-logo.png') no-repeat center center;
     animation: fade-in 2s ease-in-out;
     animation-fill-mode: both;
     width: 100vw;
@@ -63,7 +62,7 @@ body {
 }
 
 .contenedor-btn{
-    background-color: rgb(43, 233, 59);
+    background-color: #FF1D0D;
     animation: movebtn 5s ease-in-out;
     width: 150px;
     height: 25px;
@@ -80,7 +79,7 @@ body {
 
 @keyframes movebtn {
     from {left: -500px;}
-    to {left: 27%; }
+    to {left: 33%; }
 }
 
 .contenedor-btn a{

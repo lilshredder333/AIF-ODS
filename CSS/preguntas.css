@@ -8,6 +8,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-image: url(../IMG/bg-pc.jpg);
     background-repeat: no-repeat;
     background-size: auto;
 }
@@ -104,14 +105,14 @@ main {
 }
 
 .active{
-    background-color: white;
-    color:rgb(10, 35, 4);
+    background-color: #FF1D0D;
+    color: #453643;
 }
 
 .respuesta:hover {
-    background-color: white;
-    ;
-    color: rgb(10, 35, 4)
+    background-color: #FF1D0D;
+    color: #453643;
+    cursor: pointer;
 }
 
 @media only screen and (min-width:768px){
