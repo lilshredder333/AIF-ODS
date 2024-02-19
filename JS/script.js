@@ -36,7 +36,7 @@ const ods = {
       texto: "3. ¿Qué medidas implementáis para promover un lenguaje inclusivo y no sexista en el entorno laboral?",
       respuesta: [
         { texto: "a. Proporcionamos la participación en igualdad de género a todo el personal.", valor: 5 },
-        { texto: "b. Promovemos la participación equitativa de hombres y mujeres en ciertas reuniones y charlas.", valor: 3},
+        { texto: "b. Promovemos la participación equitativa de hombres y mujeres en ciertas reuniones y charlas.", valor: 3 },
         { texto: "c. Se hace la exclusión de cierta parte del personal, debido a su género, en todas las reuniones y charlas.", valor: 2 },
         { texto: "d. No tomamos medidas específicas.", valor: 0 }
       ],
@@ -73,10 +73,10 @@ const ods = {
     {
       texto: "6. ¿Cuál es la proporción de mujeres que ejercen puestos directivos?",
       respuesta: [
-        { texto: "a. Entre el 100 y el 80% de la dirección", valor: 5},
-        { texto: "b. De un 50% a un 80%", valor: 3},
-        { texto: "c. Entre un 20% y un 40%", valor: 2},
-        { texto: "d. Entre un 0 hasta el 20%", valor: 0}
+        { texto: "a. Entre el 100 y el 80% de la dirección", valor: 5 },
+        { texto: "b. De un 50% a un 80%", valor: 3 },
+        { texto: "c. Entre un 20% y un 40%", valor: 2 },
+        { texto: "d. Entre un 0 hasta el 20%", valor: 0 }
       ],
       recomendaciones: [
         { texto: "Establecer un protocolo claro de comunicación inclusiva para el personal de atención al cliente." },
@@ -112,10 +112,10 @@ const ods = {
     {
       texto: "9. ¿Qué porcentaje de hombres y mujeres dan servicios asistenciales relacionados con el mantenimiento en su compañía?",
       respuesta: [
-        { texto: "a. Menos del 50% de mujeres, no existe una distinción marcada entre estas labores para ambos géneros.", valor: 0},
-        { texto: "b. El 50%, los cargos se encuentran equilibrados", valor: 5},
-        { texto: "c. El 75% los desarrollan mujeres.", valor: 3},
-        { texto: "d. El 100% de mujeres.", valor: 2}
+        { texto: "a. Menos del 50% de mujeres, no existe una distinción marcada entre estas labores para ambos géneros.", valor: 0 },
+        { texto: "b. El 50%, los cargos se encuentran equilibrados", valor: 5 },
+        { texto: "c. El 75% los desarrollan mujeres.", valor: 3 },
+        { texto: "d. El 100% de mujeres.", valor: 2 }
       ],
       recomendaciones: [
         { texto: "Implementar políticas de inclusión activa y adaptaciones razonables para personas con discapacidad." },
@@ -126,10 +126,10 @@ const ods = {
     {
       texto: "10. ¿Qué porcentaje de hombres y mujeres se dedican a la atención al cliente en tu empresa?",
       respuesta: [
-        { texto: "a. Menos del 50% de mujeres, no existe una distinción marcada entre estas labores para ambos géneros.", valor: 5},
-        { texto: "b. El 50%, los cargos se encuentran equilibrados", valor: 3},
-        { texto: "c. El 75% los desarrollan mujeres.", valor: 2},
-        { texto: "d. El 100% de mujeres.", valor: 0}
+        { texto: "a. Menos del 50% de mujeres, no existe una distinción marcada entre estas labores para ambos géneros.", valor: 5 },
+        { texto: "b. El 50%, los cargos se encuentran equilibrados", valor: 3 },
+        { texto: "c. El 75% los desarrollan mujeres.", valor: 2 },
+        { texto: "d. El 100% de mujeres.", valor: 0 }
       ],
       recomendaciones: [
         { texto: "Realizar revisiones periódicas de sueldos para garantizar la equidad salarial." },
@@ -320,7 +320,7 @@ const ods = {
         { texto: "a. Sí y por ello desarrollamos políticas y ofrecemos condiciones laborales que apacigüen este fenómeno.", valor: 5 },
         { texto: "b. Sí pero no se ha desarrollado ningún protocolo para evitarlo.", valor: 0 },
         { texto: "c. No tenemos conocimiento sobre ello.", valor: 2 }
-        
+
       ],
       recomendaciones: [
         { texto: "Fomentar la contratación intergeneracional y ofrecer programas de mentoría para empleados de diferentes edades." }
@@ -405,84 +405,49 @@ const ods = {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  mostrarPregunta(0); // Llama a la función para mostrar la primera pregunta cuando el DOM esté completamente cargado
-});
+document.addEventListener("DOMContentLoaded", () => mostrarPregunta(indicePreguntaActual));
 
 let indicePreguntaActual = 0;
-let respuestasSeleccionadas = new Map(); // Almacena temporalmente las respuestas seleccionadas
+let respuestasSeleccionadas = new Map();
+let puntuacionTotal = 0;
 
-// Función para mostrar la pregunta actual en el formulario
 function mostrarPregunta(indice) {
-  // Reiniciar el mapa de respuestas seleccionadas al mostrar una nueva pregunta
-  respuestasSeleccionadas.clear();
-
-  // Obtengo la pregunta actual del conjunto de datos
   const pregunta = ods.pregunta[indice];
-
-  // Selecciono el contenedor donde se mostrará la pregunta y las respuestas
   const contenedorPreguntas = document.getElementById("contenedor-form");
   contenedorPreguntas.innerHTML = "";
 
-  // Creo un contenedor para la pregunta actual
   const contenedorPregunta = document.createElement("div");
-  contenedorPregunta.classList.add("contenedor-pregunta");
+  contenedorPregunta.className = "contenedor-pregunta";
+  contenedorPregunta.innerHTML = `<h2>${pregunta.texto}</h2>`;
 
-  // Creo un elemento de encabezado para mostrar el texto de la pregunta
-  const textoPregunta = document.createElement("h2");
-  textoPregunta.textContent = pregunta.texto;
-
-  // Añado el texto de la pregunta al contenedor de la pregunta
-  contenedorPregunta.appendChild(textoPregunta);
-
-  // Creo un contenedor para todas las respuestas de la pregunta actual
   const contenedorRespuestas = document.createElement("div");
-  contenedorRespuestas.classList.add("contenedor-respuestas");
+  contenedorRespuestas.className = "contenedor-respuestas";
 
-  // Creo los divs de respuesta utilizando map
-  pregunta.respuesta.forEach((respuesta, index) => {
+  pregunta.respuesta.forEach((respuesta) => {
     const divRespuesta = document.createElement("div");
-    divRespuesta.classList.add("respuesta");
-    divRespuesta.textContent = respuesta.texto; // Añado el texto de la respuesta al div
-    divRespuesta.dataset.valor = respuesta.valor; // Almaceno el valor de la respuesta como un atributo de datos
-
-    // Verificar si la respuesta está seleccionada y aplicar la clase 'active' si es necesario
+    divRespuesta.className = "respuesta";
+    divRespuesta.textContent = respuesta.texto;
+    divRespuesta.dataset.valor = respuesta.valor;
     const preguntaActual = pregunta.texto;
     if (respuestasSeleccionadas.has(preguntaActual) && respuestasSeleccionadas.get(preguntaActual) === respuesta.valor) {
       divRespuesta.classList.add("active");
     }
-
-    // Agrego un evento de clic para seleccionar la respuesta y actualizar la interfaz
-    divRespuesta.addEventListener("click", () => {
-      seleccionarRespuesta(preguntaActual, respuesta.valor, divRespuesta);
-    });
-
+    divRespuesta.addEventListener("click", () => seleccionarRespuesta(preguntaActual, respuesta.valor, divRespuesta));
     contenedorRespuestas.appendChild(divRespuesta);
   });
 
-  // Añado el contenedor de respuestas al contenedor de la pregunta
   contenedorPregunta.appendChild(contenedorRespuestas);
-
-  // Añado el contenedor de la pregunta al contenedor principal del formulario
   contenedorPreguntas.appendChild(contenedorPregunta);
 
-  // Creo los botones de siguiente y anterior según el índice de la pregunta
   const contenedorBotones = document.createElement("div");
-  contenedorBotones.classList.add("contenedor-botones");
+  contenedorBotones.className = "contenedor-botones";
 
-  // Si no es la primera pregunta, creo el botón de "Anterior"
-  if (indice > 0 && indice < ods.pregunta.length - 1) {
-    const btnPrev = crearBoton("Anterior", mostrarPreguntaAnterior);
-    contenedorBotones.appendChild(btnPrev);
-  }
-
-  // Creo el botón de "Siguiente" o "Finalizar" según el índice de la pregunta
-  const btnText = (indice === ods.pregunta.length - 1) ? "Finalizar" : "Siguiente";
-  const btnNext = crearBoton(btnText, () => {
+  const btnPrev = crearBoton("Anterior", mostrarPreguntaAnterior);
+  const btnNext = crearBoton("Siguiente", () => {
     if (indice === ods.pregunta.length - 1) {
-      window.location.href = "recomendaciones.html"; // Redirijo al usuario a la página "recomendaciones.html" al finalizar
+      mostrarResultado();
     } else {
-      if (respuestasSeleccionadas.has(pregunta.texto)) { // Verifica si se ha seleccionado una respuesta
+      if (respuestasSeleccionadas.has(pregunta.texto)) {
         mostrarPreguntaSiguiente();
       } else {
         alert("Por favor, selecciona una respuesta antes de continuar.");
@@ -490,29 +455,31 @@ function mostrarPregunta(indice) {
     }
   });
 
-  // Habilitar el botón de "Siguiente" si una respuesta está seleccionada
-  if (respuestasSeleccionadas.has(pregunta.texto)) {
-    btnNext.disabled = false;
+  if (indice === 0) {
+    btnPrev.style.display = "none"; // Oculta el botón "Anterior" en la primera pregunta
   }
 
+  contenedorBotones.appendChild(btnPrev);
   contenedorBotones.appendChild(btnNext);
-
-  // Añado el contenedor de botones al contenedor principal del formulario
   contenedorPreguntas.appendChild(contenedorBotones);
-
-  // Calcular la puntuación total del usuario
-  let puntuacionTotal = calcularPuntuacionTotal();
-
-  // Calcular la cantidad de recomendaciones según la puntuación
-  let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
-
-  // Mostrar la puntuación total y las recomendaciones
-  mostrarPuntuacionTotal(puntuacionTotal);
-  generarRecomendaciones();
 }
 
+function mostrarPreguntaSiguiente() {
+  const indiceSiguiente = indicePreguntaActual + 1;
+  if (indiceSiguiente < ods.pregunta.length) {
+    indicePreguntaActual = indiceSiguiente;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
 
-// Función para crear un botón con un texto y una función de clic
+function mostrarPreguntaAnterior() {
+  const indiceAnterior = indicePreguntaActual - 1;
+  if (indiceAnterior >= 0) {
+    indicePreguntaActual = indiceAnterior;
+    mostrarPregunta(indicePreguntaActual);
+  }
+}
+
 function crearBoton(texto, onClick) {
   const btn = document.createElement("button");
   btn.textContent = texto;
@@ -520,143 +487,76 @@ function crearBoton(texto, onClick) {
   return btn;
 }
 
-// Función para almacenar la respuesta seleccionada en el mapa de respuestas seleccionadas
 function seleccionarRespuesta(pregunta, valorRespuesta, divRespuesta) {
-  // Verificar si la respuesta seleccionada ya tiene la clase 'active'
-  const respuestaActiva = divRespuesta.classList.contains('active');
-
-  if (respuestaActiva) {
-    // Si ya está seleccionada, deseleccionarla eliminando la clase 'active'
+  const respuestaText = divRespuesta.textContent.trim();
+  if (divRespuesta.classList.contains('active')) {
     divRespuesta.classList.remove('active');
-    respuestasSeleccionadas.delete(pregunta); // Eliminar la respuesta del mapa
+    puntuacionTotal -= valorRespuesta;
+    respuestasSeleccionadas.delete(pregunta);
   } else {
-    // Si no está seleccionada, seleccionarla agregando la clase 'active'
-    // Primero, deseleccionar todas las respuestas en caso de que solo se permita una respuesta
-    const respuestas = document.querySelectorAll('.respuesta');
-    respuestas.forEach(respuesta => {
-      respuesta.classList.remove('active');
-    });
-    // Luego, seleccionar la respuesta actual
+    document.querySelectorAll('.respuesta.active').forEach(respuesta => respuesta.classList.remove('active'));
     divRespuesta.classList.add('active');
-    // Almacenar la respuesta seleccionada en el mapa
+    puntuacionTotal += valorRespuesta;
     respuestasSeleccionadas.set(pregunta, valorRespuesta);
   }
+
+  mostrarPuntuacionTotal(puntuacionTotal);
 }
 
-// Función para mostrar la siguiente pregunta
-function mostrarPreguntaSiguiente() {
-  if (indicePreguntaActual < ods.pregunta.length - 1) {
-    indicePreguntaActual++;
-    mostrarPregunta(indicePreguntaActual);
-  }
+function mostrarResultado() {
+  const contenedorPreguntas = document.getElementById("contenedor-form");
+  contenedorPreguntas.innerHTML = "";
+
+  const contenedorResultado = document.getElementById("recomendaciones-contenedor");
+  contenedorResultado.style.display = "block";
+  contenedorResultado.innerHTML = "";
+
+  const puntuacionUsuario = document.createElement('div');
+  puntuacionUsuario.textContent = `Puntuación Usuario: ${puntuacionTotal}`;
+  contenedorResultado.appendChild(puntuacionUsuario);
+
+  const puntuacionMaxima = document.createElement('div');
+  puntuacionMaxima.textContent = `Puntuación Máxima: 150`; // Actualizar con el valor máximo
+  contenedorResultado.appendChild(puntuacionMaxima);
+
+  generarRecomendaciones(contenedorResultado);
 }
 
-// Función para mostrar la pregunta anterior
-function mostrarPreguntaAnterior() {
-  if (indicePreguntaActual > 0) {
-    indicePreguntaActual--;
-    mostrarPregunta(indicePreguntaActual);
-  }
-}
 
-function calcularPuntuacionTotal() {
-  let puntuacionTotal = 0;
+function generarRecomendaciones(contenedorResultado) {
+  ods.pregunta.forEach((pregunta) => {
+    const cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
+    const recomendaciones = pregunta.recomendaciones.slice(0, cantidadRecomendaciones);
 
-  // Recorrer el mapa de respuestas seleccionadas y sumar los valores
-  respuestasSeleccionadas.forEach((valor) => {
-    puntuacionTotal += valor;
+    const recomendacionElemento = document.createElement('div');
+    recomendacionElemento.classList.add('recomendacion-elemento');
+    recomendacionElemento.textContent = `Pregunta: ${pregunta.texto}`;
+
+    if (recomendaciones.length > 0) {
+      const recomendacionesContainer = document.createElement('div');
+      recomendacionesContainer.classList.add('recomendaciones');
+      recomendaciones.forEach((recomendacion, index) => {
+        const recomendacionItem = document.createElement('div');
+        recomendacionItem.textContent = `Recomendación ${index + 1}: ${recomendacion.texto}`;
+        recomendacionesContainer.appendChild(recomendacionItem);
+      });
+      recomendacionElemento.appendChild(recomendacionesContainer);
+    }
+
+    contenedorResultado.appendChild(recomendacionElemento);
   });
-
-  return puntuacionTotal;
 }
 
 function calcularCantidadRecomendaciones(puntuacionTotal) {
   let cantidadRecomendaciones = 0;
   if (puntuacionTotal < 75) {
-    cantidadRecomendaciones = ods.pregunta.length; // Mostrar todas las recomendaciones
+    cantidadRecomendaciones = 3;
   } else if (puntuacionTotal >= 75 && puntuacionTotal <= 100) {
-    cantidadRecomendaciones = 2; // Mostrar las 2 primeras recomendaciones por pregunta
+    cantidadRecomendaciones = 2;
   } else if (puntuacionTotal >= 101 && puntuacionTotal <= 139) {
-    cantidadRecomendaciones = 1; // Mostrar una recomendación por pregunta
+    cantidadRecomendaciones = 1;
   } else {
-    cantidadRecomendaciones = 0; // No recibir recomendaciones
+    cantidadRecomendaciones = 0;
   }
   return cantidadRecomendaciones;
-}
-
-function mostrarPuntuacionTotal(puntuacionTotal) {
-  const resultadoContainer = document.getElementById('resultado');
-  const puntuacionTotalContainer = document.createElement('div');
-  const puntuacionMaximaContainer = document.createElement('div');
-
-  puntuacionTotalContainer.id = 'puntuacion-total';
-  puntuacionMaximaContainer.id = 'puntuacion-maxima';
-
-  puntuacionTotalContainer.textContent = 'Puntuación Total: ' + puntuacionTotal;
-  puntuacionMaximaContainer.textContent = 'Puntuación Máxima: 150';
-
-  resultadoContainer.appendChild(puntuacionTotalContainer);
-  resultadoContainer.appendChild(puntuacionMaximaContainer);
-}
-
-function generarRecomendaciones() {
-  const resultadoContainer = document.getElementById('resultado');
-  const recomendacionesContenedor = document.createElement('div');
-  recomendacionesContenedor.id = 'recomendaciones-contenedor';
-  resultadoContainer.appendChild(recomendacionesContenedor);
-
-  // Calcular la cantidad de recomendaciones según la puntuación total
-  let puntuacionTotal = calcularPuntuacionTotal();
-  let cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
-
-  // Recorremos las preguntas y generamos las recomendaciones según la cantidad calculada
-  ods.pregunta.forEach((pregunta, indicePregunta) => {
-    const recomendacionElemento = document.createElement('div');
-    recomendacionElemento.classList.add('recomendacion-elemento');
-    recomendacionElemento.textContent = `Pregunta: ${pregunta.texto}`;
-    recomendacionesContenedor.appendChild(recomendacionElemento);
-
-    recomendacionElemento.addEventListener('click', () => {
-      mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacionElemento);
-    });
-  });
-
-  // Agregar mensaje adicional basado en la puntuación del usuario una sola vez
-  const mensajeAdicional = obtenerMensajeAdicional(puntuacionTotal);
-  mensajeAdicional.id = 'mensaje-adicional';
-  resultadoContainer.appendChild(mensajeAdicional);
-}
-
-function obtenerMensajeAdicional(puntuacionTotal) {
-  const mensajeAdicional = document.createElement('div');
-  if (puntuacionTotal < 75) {
-    mensajeAdicional.innerHTML = `MAL 🙁 ESPABILA 😡<br>Haz click para ver tus recomendaciones`;
-  } else if (puntuacionTotal >= 75 && puntuacionTotal < 100) {
-    mensajeAdicional.innerHTML = `MEJORABLE 😕 CONFIAMOS EN TI 😔<br>Haz click para ver tus recomendaciones`;
-  } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
-    mensajeAdicional.innerHTML = `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`;
-  } else {
-    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ 🌟<br>Haz click para ver tus recomendaciones`;
-  }
-  return mensajeAdicional;
-}
-
-function mostrarRecomendaciones(pregunta, cantidadRecomendaciones, recomendacionElemento) {
-  const recomendaciones = pregunta.recomendaciones.slice(0, cantidadRecomendaciones);
-  const recomendacionesTexto = recomendaciones.map((recomendacion, index) => {
-    return `Recomendación ${index + 1}: ${recomendacion.texto}`;
-  });
-
-  // Verificar si ya se han mostrado las recomendaciones
-  const recomendacionesMostradas = recomendacionElemento.querySelector('.recomendaciones');
-  if (recomendacionesMostradas) {
-    // Si ya están visibles, eliminarlas del contenedor
-    recomendacionElemento.removeChild(recomendacionesMostradas);
-  } else {
-    // Si no están visibles, agregarlas al contenedor
-    const recomendacionesContainer = document.createElement('div');
-    recomendacionesContainer.classList.add('recomendaciones');
-    recomendacionesContainer.textContent = recomendacionesTexto.join('\n');
-    recomendacionElemento.appendChild(recomendacionesContainer);
-  }
 }

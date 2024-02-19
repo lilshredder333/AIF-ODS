@@ -20,19 +20,20 @@ a {
 header {
     width: 100%;
     position: fixed;
-    background-color: #F3DAD8;
-    height: 65px;
+    height: 70px;
     top: 0;
     display: flex;
-
+    background-image: linear-gradient(#F3DAD8 5%, #f3dad8a3,transparent);
 }
 
-#logo-mobile{
+#logo-mobile {
     width: 130px;
+    height: auto;
 }
 
-#logo-web{
+#logo-web {
     width: 10%;
+    height: auto;
 }
 
 main {
@@ -81,7 +82,7 @@ main {
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .contenedor-respuestas {
@@ -93,18 +94,19 @@ main {
     border-radius: 10px;
     text-align: justify;
     flex-direction: column;
-    min-height: 450px;
+    min-height: 400px;
     justify-content: space-around;
 }
 
-.respuesta{
+.respuesta {
     border: solid 1px white;
     border-radius: 10px;
     padding: 2%;
+    min-height: 70px;
 
 }
 
-.active{
+.active {
     background-color: #FF1D0D;
     color: #453643;
 }
@@ -115,6 +117,39 @@ main {
     cursor: pointer;
 }
 
-@media only screen and (min-width:768px){
-/* ayuda miguel angel */
+/* ocultar contenedor resultado hasta que el usuario conteste el formulario entero */
+#recomendaciones-contenedor {
+    display: none;
+    background-color: #F3DAD8;
+    padding: 5%;
+    border-radius: 10px;
+    margin: 2%;
+    min-width: 70%;
+    max-height: 600px;
+    overflow: scroll;
+}
+
+
+/* Estilo de la barra de desplazamiento */
+#recomendaciones-contenedor::-webkit-scrollbar {
+    width: 4px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo del track (la barra en sí misma) */
+#recomendaciones-contenedor::-webkit-scrollbar-track{
+    background: #f1f1f1; /* Color del fondo del track */
+}
+
+/* Estilo del thumb (el deslizador) */
+#recomendaciones-contenedor::-webkit-scrollbar-thumb {
+    background: #888; /* Color del deslizador */
+}
+
+/* Estilo del thumb al pasar el mouse sobre él */
+#recomendaciones-contenedor::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del deslizador al pasar el mouse sobre él */
+}
+
+@media only screen and (min-width:768px) {
+    /* ayuda miguel angel */
 }
