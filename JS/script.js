@@ -488,7 +488,7 @@ function crearBoton(texto, onClick) {
 }
 
 function seleccionarRespuesta(pregunta, valorRespuesta, divRespuesta) {
-  const respuestaText = divRespuesta.textContent.trim();
+  const respuestaText = divRespuesta.textContent.trim(); 
   if (divRespuesta.classList.contains('active')) {
     divRespuesta.classList.remove('active');
     puntuacionTotal -= valorRespuesta;
@@ -521,6 +521,13 @@ function mostrarResultado() {
 
   generarRecomendaciones(contenedorResultado);
 
+  // Mostrar mensaje adicional
+  const mensajeAdicional = obtenerMensajeAdicional(puntuacionTotal);
+  const contenedorMensajeAdicional = document.createElement('div');
+  contenedorMensajeAdicional.id = 'mensajeAdicional';
+  contenedorMensajeAdicional.appendChild(mensajeAdicional);
+  contenedorResultado.appendChild(contenedorMensajeAdicional);
+
   const recomendacionElementos = document.querySelectorAll('.recomendacion-elemento');
 
   recomendacionElementos.forEach((recomendacionElemento) => {
@@ -534,6 +541,21 @@ function mostrarResultado() {
     });
   });
 }
+
+function obtenerMensajeAdicional(puntuacionTotal) {
+  const mensajeAdicional = document.createElement('div');
+  if (puntuacionTotal < 75) {
+    mensajeAdicional.innerHTML = `MAL 🙁 ESPABILA 😡<br>Haz click para ver tus recomendaciones`;
+  } else if (puntuacionTotal >= 75 && puntuacionTotal < 100) {
+    mensajeAdicional.innerHTML = `MEJORABLE 😕 CONFIAMOS EN TI 😔<br>Haz click para ver tus recomendaciones`;
+  } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
+    mensajeAdicional.innerHTML = `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`;
+  } else {
+    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ 🌟<br>Haz click para ver tus recomendaciones`;
+  }
+  return mensajeAdicional;
+}
+
 
 function generarRecomendaciones(contenedorResultado) {
   ods.pregunta.forEach((pregunta) => {
