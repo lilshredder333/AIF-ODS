@@ -456,7 +456,7 @@ function mostrarPregunta(indice) {
   });
 
   if (indice === 0) {
-    btnPrev.style.display = "none"; // Oculta el botón "Anterior" en la primera pregunta
+    btnPrev.style.display = "none";
   }
 
   contenedorBotones.appendChild(btnPrev);
@@ -516,12 +516,24 @@ function mostrarResultado() {
   contenedorResultado.appendChild(puntuacionUsuario);
 
   const puntuacionMaxima = document.createElement('div');
-  puntuacionMaxima.textContent = `Puntuación Máxima: 150`; // Actualizar con el valor máximo
+  puntuacionMaxima.textContent = `Puntuación Máxima: 150`;
   contenedorResultado.appendChild(puntuacionMaxima);
 
   generarRecomendaciones(contenedorResultado);
-}
 
+  const recomendacionElementos = document.querySelectorAll('.recomendacion-elemento');
+
+  recomendacionElementos.forEach((recomendacionElemento) => {
+    recomendacionElemento.addEventListener('click', () => {
+      const recomendaciones = recomendacionElemento.querySelector('.recomendaciones');
+      if (recomendaciones.style.display === 'none' || recomendaciones.style.display === '') {
+        recomendaciones.style.display = 'block';
+      } else {
+        recomendaciones.style.display = 'none';
+      }
+    });
+  });
+}
 
 function generarRecomendaciones(contenedorResultado) {
   ods.pregunta.forEach((pregunta) => {
