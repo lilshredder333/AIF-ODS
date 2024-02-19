@@ -74,10 +74,11 @@ main {
     min-width: 70%;
     min-height: 500px;
     max-height: 800px;
-    background-color: #F3DAD8;
+    background-color: transparent;
+    border: solid 1px #F3DAD8;
     margin: 2%;
     padding: 5%;
-    color: #453643;
+    color: white;
     border-radius: 10px;
     font-size: 12px;
     display: flex;
@@ -89,8 +90,7 @@ main {
     display: flex;
     padding: 2%;
     margin: 2%;
-    color: #453643;
-    border: solid 1px #FF1D0D;
+    color: #F3DAD8;;
     border-radius: 10px;
     text-align: justify;
     flex-direction: column;
@@ -107,13 +107,13 @@ main {
 }
 
 .active {
-    background-color: #FF1D0D;
-    color: #453643;
+    background-color: #F3DAD8;
+    color: #FF1D0D;
 }
 
 .respuesta:hover {
-    background-color: #FF1D0D;
-    color: #453643;
+    background-color: #F3DAD8;
+    color: #FF1D0D;
     cursor: pointer;
 }
 
