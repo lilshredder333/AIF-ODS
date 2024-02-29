@@ -551,7 +551,7 @@ function obtenerMensajeAdicional(puntuacionTotal) {
   } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
     mensajeAdicional.innerHTML = `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`;
   } else {
-    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ 🌟<br>Haz click para ver tus recomendaciones`;
+    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ `;
   }
   return mensajeAdicional;
 }
