@@ -16,20 +16,20 @@ body {
 
 }
 
-main{
+main {
     display: flex;
     flex-direction: column;
     height: 100%;
     align-items: center;
 }
 
-#bg-pic{
-    position: absolute; 
+#bg-pic {
+    position: absolute;
     z-index: -2;
     size-adjust: 100%;
 }
 
-#personaje{
+#personaje {
     width: 60%;
     position: absolute;
     top: 35%;
@@ -39,52 +39,124 @@ main{
 }
 
 @keyframes movimientoPersonaje {
-0% {left: -20%; opacity: 0;}
+    0% {
+        left: -20%;
+        opacity: 0;
+    }
 
-100%{ left: 3%; opacity: 1;}
+    100% {
+        left: 3%;
+        opacity: 1;
+    }
 }
 
-#personaje img{
+#personaje img {
     width: 100%;
 }
 
-#bocadillo{
+#bocadillo {
     width: 50%;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     top: 10%;
-    right: 5%;
-    animation: movimientoBocadillo 2s ease-in-out;
+    right: 0%;
+    animation: fadeBocadillo 2s ease-in-out;
     animation-fill-mode: both;
     animation-delay: 1s;
     opacity: 0;
 }
 
-@keyframes movimientoBocadillo {
-0% {opacity: 0;}
+@keyframes fadeBocadillo {
+    0% {
+        opacity: 0;
+    }
 
-100%{opacity: 1;}
+    100% {
+        opacity: 1;
+    }
 }
 
-#bocadillo img{
+#bocadillo img {
     width: 100%;
 
 }
 
-#mensajeIntro{
-    width: 80%;
-    font-size: 12.9px;
+#mensajeIntro1 {
+    width: 60%;
+    height: auto;
+    font-size: 13px;
     text-align: center;
-    padding: 4%;
     font-weight: 600;
     position: absolute;
+    top: 30%;
+    align-self: center;
+    justify-content: center;
+    animation: mensaje1 2.5s ease-in-out;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    opacity: 0;
 }
 
-#botonAdelante{
+#mensajeIntro2{
+    width: 60%;
+    height: auto;
+    font-size: 13px;
+    text-align: center;
+    font-weight: 600;
+    position: absolute;
+    top: 30%;
+    align-self: center;
+    justify-content: center;
+    animation: mensaje2 3s ease-in-out;
+    animation-fill-mode: both;
+    animation-delay: 4s;
+    opacity: 0;
+}
+
+
+@keyframes mensaje1{
+
+    0%{
+        opacity: 1;
+    }
+
+    75%{
+        opacity: 1;
+    }
+
+    95%{
+        opacity: 0.5;
+    }
+
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes mensaje2{
+
+    0%{
+        opacity: 0;
+    }
+
+    25%{
+        opacity: 0.75;
+    }
+
+    35%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+#botonAdelante {
     width: 50%;
-    background-color:  #FF1D0D;
+    background-color: #FF1D0D;
     height: 45px;
     border-radius: 20px;
     display: flex;
@@ -95,24 +167,30 @@ main{
 }
 
 @keyframes movimientoBoton {
-0% {bottom: -7%;}
+    0% {
+        bottom: 10%;
+        opacity: 0;
+    }
 
-100%{bottom: 10%;}
+    100% {
+        opacity: 1;
+        bottom: 10%;
+    }
 }
 
-#botonAdelante button{
+#botonAdelante button {
     background-color: transparent;
     border: none;
     width: 100%;
     text-align: center;
 }
 
-#botonAdelante button a{
+#botonAdelante button a {
     color: white;
     font-weight: 600;
     font-size: 20px;
 }
 
-@media only screen and (min-width:768px){
+@media only screen and (min-width:768px) {
     /* ayuda miguel angeeeeeeeeeeel jajjajajja */
 }
