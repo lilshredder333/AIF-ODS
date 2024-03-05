@@ -550,19 +550,22 @@ function mostrarResultado() {
   });
 }
 
-function obtenerMensajeAdicional(puntuacionTotal) {
+const obtenerMensajeAdicional = (puntuacionTotal) => {
+  const mensajes = {
+    0: `MAL 🙁 ESPABILA 😡<br>Haz click para ver tus recomendaciones`,
+    75: `MEJORABLE 😕 CONFIAMOS EN TI 😔<br>Haz click para ver tus recomendaciones`,
+    100: `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`,
+    140: `EXCELENTE 😃 SIGUE ASÍ`
+  };
+
+  const puntuaciones = Object.keys(mensajes).map(Number);
+  const puntuacion = puntuaciones.find(score => puntuacionTotal < score) || 140;
+
   const mensajeAdicional = document.createElement('div');
-  if (puntuacionTotal < 75) {
-    mensajeAdicional.innerHTML = `MAL 🙁 ESPABILA 😡<br>Haz click para ver tus recomendaciones`;
-  } else if (puntuacionTotal >= 75 && puntuacionTotal < 100) {
-    mensajeAdicional.innerHTML = `MEJORABLE 😕 CONFIAMOS EN TI 😔<br>Haz click para ver tus recomendaciones`;
-  } else if (puntuacionTotal >= 100 && puntuacionTotal < 140) {
-    mensajeAdicional.innerHTML = `POR EL BUEN CAMINO 😊 SIGA TRABAJANDO EN ELLO 👍<br>Haz click para ver tus recomendaciones`;
-  } else {
-    mensajeAdicional.innerHTML = `EXCELENTE 😃 SIGUE ASÍ `;
-  }
+  mensajeAdicional.innerHTML = mensajes[puntuacion];
   return mensajeAdicional;
-}
+};
+
 
 function generarRecomendaciones(contenedorResultado) {
   ods.pregunta.forEach((pregunta) => {
