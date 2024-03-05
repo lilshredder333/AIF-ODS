@@ -511,11 +511,19 @@ function mostrarResultado() {
   contenedorResultado.style.display = "block";
   contenedorResultado.innerHTML = "";
 
+  const botonDescarga = document.createElement('button');
+  botonDescarga.id = 'botonDescarga';
+  botonDescarga.textContent = 'Descargar resultados';
+  botonDescarga.addEventListener('click', descargarResultados);
+  contenedorResultado.appendChild(botonDescarga);
+
   const puntuacionUsuario = document.createElement('div');
-  puntuacionUsuario.textContent = `Puntuación Usuario: ${puntuacionTotal}`;
+  puntuacionUsuario.textContent = `Tu puntuación total: ${puntuacionTotal}`;
+  puntuacionUsuario.id = 'puntuacionUsuario'
   contenedorResultado.appendChild(puntuacionUsuario);
 
   const puntuacionMaxima = document.createElement('div');
+  puntuacionMaxima.id = 'puntuacionMax'
   puntuacionMaxima.textContent = `Puntuación Máxima: 150`;
   contenedorResultado.appendChild(puntuacionMaxima);
 
@@ -534,7 +542,7 @@ function mostrarResultado() {
     recomendacionElemento.addEventListener('click', () => {
       const recomendaciones = recomendacionElemento.querySelector('.recomendaciones');
       if (recomendaciones.style.display === 'none' || recomendaciones.style.display === '') {
-        recomendaciones.style.display = 'block';
+        recomendaciones.style.display = 'flex';
       } else {
         recomendaciones.style.display = 'none';
       }
@@ -556,7 +564,6 @@ function obtenerMensajeAdicional(puntuacionTotal) {
   return mensajeAdicional;
 }
 
-
 function generarRecomendaciones(contenedorResultado) {
   ods.pregunta.forEach((pregunta) => {
     const cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
@@ -571,15 +578,32 @@ function generarRecomendaciones(contenedorResultado) {
       recomendacionesContainer.classList.add('recomendaciones');
       recomendaciones.forEach((recomendacion, index) => {
         const recomendacionItem = document.createElement('div');
-        recomendacionItem.textContent = `Recomendación ${index + 1}: ${recomendacion.texto}`;
+        recomendacionItem.id = 'recomendacionItem';
+
+        // Crear elemento <h2> para el título de la recomendación
+        const tituloRecomendacion = document.createElement('h2');
+        tituloRecomendacion.textContent = `Recomendación ${index + 1}:`;
+        // Agregar elemento <h2> al elemento recomendacionItem
+        recomendacionItem.appendChild(tituloRecomendacion);
+
+        // Crear elemento <p> para el texto de la recomendación
+        const textoRecomendacion = document.createElement('p');
+        textoRecomendacion.textContent = recomendacion.texto;
+        // Agregar elemento <p> al elemento recomendacionItem
+        recomendacionItem.appendChild(textoRecomendacion);
+
+        // Agregar recomendacionItem al contenedor de recomendaciones
         recomendacionesContainer.appendChild(recomendacionItem);
       });
+      // Agregar recomendacionesContainer al elemento recomendacionElemento
       recomendacionElemento.appendChild(recomendacionesContainer);
     }
 
+    // Agregar recomendacionElemento al contenedorResultado
     contenedorResultado.appendChild(recomendacionElemento);
   });
 }
+
 
 function calcularCantidadRecomendaciones(puntuacionTotal) {
   let cantidadRecomendaciones = 0;
@@ -593,4 +617,29 @@ function calcularCantidadRecomendaciones(puntuacionTotal) {
     cantidadRecomendaciones = 0;
   }
   return cantidadRecomendaciones;
+}
+
+function descargarResultados() {
+  // Crear un elemento <a> para la descarga
+  const enlaceDescarga = document.createElement('a');
+  enlaceDescarga.href = obtenerContenidoDescargable(); // Llama a una función para obtener el contenido a descargar
+  enlaceDescarga.download = 'resultados_y_recomendaciones.txt'; // Nombre del archivo a descargar
+  enlaceDescarga.click(); // Simula un clic en el enlace para iniciar la descarga
+}
+
+function obtenerContenidoDescargable() {
+  let contenido = `Puntuación total: ${puntuacionTotal}\n\n`;
+
+  // Agregar las recomendaciones
+  ods.pregunta.forEach((pregunta) => {
+    contenido += `Pregunta: ${pregunta.texto}\n`;
+    const cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
+    const recomendaciones = pregunta.recomendaciones.slice(0, cantidadRecomendaciones);
+    recomendaciones.forEach((recomendacion, index) => {
+      contenido += `Recomendación ${index + 1}: ${recomendacion.texto}\n`;
+    });
+    contenido += '\n';
+  });
+
+  return URL.createObjectURL(new Blob([contenido], { type: 'text/plain' }));
 }

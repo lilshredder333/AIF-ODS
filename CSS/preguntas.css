@@ -9,6 +9,18 @@
     box-sizing: border-box;
 }
 
+/* Ajustar el ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 2px;
+    /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo del thumb (el deslizador) */
+::-webkit-scrollbar-thumb {
+    background-color: #ce2020;
+    /* Color del deslizador */
+}
+
 body {
     font-family: 'Merriweather', sans-serif;
     background-image: url(../IMG/bg-pc.jpg);
@@ -16,9 +28,6 @@ body {
     background-size: auto;
 }
 
-a {
-    color: rgb(41, 187, 53);
-}
 
 header {
     width: 100%;
@@ -26,7 +35,7 @@ header {
     height: 70px;
     top: 0;
     display: flex;
-    background-image: linear-gradient(#260b4d 5%, #2f0d5aa3,transparent);
+    background-image: linear-gradient(#260b4d 5%, #2f0d5aa3, transparent);
 }
 
 #logo-mobile {
@@ -64,7 +73,7 @@ main {
 }
 
 .contenedor-pregunta {
-    background-image: linear-gradient(360deg, #260b4d, #ce2020,#260b4d);
+    background-image: linear-gradient(360deg, #260b4d, #ce2020, #260b4d);
     border: solid 1px #1c1546;
     padding: 5%;
     color: white;
@@ -82,8 +91,7 @@ main {
     align-self: center;
 }
 
-.contenedor-pregunta h2{
-    border: solid 2px red;
+.contenedor-pregunta h2 {
     min-height: 65px;
     text-align: center;
     font-size: 14px;
@@ -95,7 +103,8 @@ main {
     display: flex;
     padding: 2%;
     margin: 2%;
-    color: #e3a2ff;;
+    color: #e3a2ff;
+    ;
     border-radius: 10px;
     text-align: justify;
     flex-direction: column;
@@ -128,7 +137,7 @@ main {
     cursor: pointer;
 }
 
-.contenedor-botones{
+.contenedor-botones {
     width: 90%;
     align-self: center;
     display: flex;
@@ -139,7 +148,7 @@ main {
     padding-bottom: 3%;
 }
 
-.contenedor-botones button{
+.contenedor-botones button {
     border: none;
     font-weight: 600;
     padding: 2%;
@@ -149,7 +158,7 @@ main {
     border-bottom: 1px solid white;
 }
 
-.contenedor-botones button:hover{
+.contenedor-botones button:hover {
     border-bottom: solid 1px white;
     background-color: #9440978c;
     color: #ffffff;
@@ -159,44 +168,93 @@ main {
 /* ocultar contenedor resultado hasta que el usuario conteste el formulario entero */
 #recomendaciones-contenedor {
     display: none;
-    background-color: #F3DAD8;
+    background-image: linear-gradient(360deg, #260b4d, #ce2020, #260b4d);
+    border: solid 1px #1c1546;
     padding: 5%;
     border-radius: 10px;
     margin: 2%;
-    min-width: 70%;
-    max-height: 600px;
+    min-height: 520px;
+    max-height: 520px;
+    width: 80%;
     overflow: scroll;
 }
 
 
-/* Estilo de la barra de desplazamiento */
-#recomendaciones-contenedor::-webkit-scrollbar {
-    width: 4px; /* Ancho de la barra de desplazamiento */
+.recomendacion-elemento {
+    cursor: pointer;
+    padding: 5%;
+    color: white;
+    border-radius: 10px;
 }
 
-/* Estilo del track (la barra en sí misma) */
-#recomendaciones-contenedor::-webkit-scrollbar-track{
-    background: #f1f1f1; /* Color del fondo del track */
-}
-
-/* Estilo del thumb (el deslizador) */
-#recomendaciones-contenedor::-webkit-scrollbar-thumb {
-    background: #888; /* Color del deslizador */
-}
-
-/* Estilo del thumb al pasar el mouse sobre él */
-#recomendaciones-contenedor::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color del deslizador al pasar el mouse sobre él */
-}
-
-.recomendacion-elemento{
-    border: solid 1px red;
-    cursor: pointer;    
-}
-
-.recomendaciones{
+.recomendaciones {
     display: none;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    padding: 3%;
+    flex-direction: column;
+    justify-content: space-around;
 }
+
+#recomendacionItem {
+    border: solid 2px red;
+    padding: 2%;
+
+}
+
+#recomendacionItem h2 {
+    font-family: "Merriweather", serif;
+    font-size: 17px;
+}
+
+#recomendacionItem p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+}
+
+#puntuacionMax {
+    color: white;
+    padding: 2%;
+    font-family: 'Merriweather', sans-serif;
+}
+
+#puntuacionUsuario {
+    color: white;
+    padding: 2%;
+    font-family: 'Merriweather', sans-serif;
+}
+
+#mensajeAdicional {
+    color: white;
+    position: fixed;
+    text-align: right;
+    top: 0%;
+    right: 6%;
+    width: 50%;
+    padding: 2%;
+    font-family: 'Merriweather', sans-serif;
+}
+
+#botonDescarga {
+    position: absolute;
+    left: 35%;
+    bottom: 4%;
+    border: none;
+    font-weight: 600;
+    padding: 2%;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+#botonDescarga:hover {
+    border-bottom: solid 1px white;
+    background-color: #9440978c;
+    color: #ffffff;
+    cursor: pointer;
+}
+
 
 @media only screen and (min-width:768px) {
     /* ayuda miguel angel */
