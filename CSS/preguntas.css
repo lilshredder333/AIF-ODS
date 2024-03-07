@@ -26,6 +26,9 @@ body {
     background-image: url(../IMG/bg-pc.jpg);
     background-repeat: no-repeat;
     background-size: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
@@ -165,6 +168,35 @@ main {
     cursor: pointer;
 }
 
+.popup {
+    align-self: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    color: #de4e44e2;
+    font-weight: 600;
+    position: absolute;
+    min-width: 50%;
+    max-width: 50%;
+    padding: 2%;
+    border-radius: 10px;
+    font-size: 15px;
+    text-align: justify;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 2px white;
+}
+
+#cerrarBtn {
+    width: 10%;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
 /* ocultar contenedor resultado hasta que el usuario conteste el formulario entero */
 #recomendaciones-contenedor {
     display: none;
@@ -176,9 +208,9 @@ main {
     min-height: 520px;
     max-height: 520px;
     width: 80%;
-    overflow: scroll;
+    color: white;
+    overflow-y: scroll;
 }
-
 
 .recomendacion-elemento {
     cursor: pointer;
@@ -220,8 +252,8 @@ main {
 
 #puntuacionUsuario {
     color: white;
-    padding: 2%;
     font-family: 'Merriweather', sans-serif;
+    padding-bottom: 2%;
 }
 
 #mensajeAdicional {
@@ -235,7 +267,7 @@ main {
     font-family: 'Merriweather', sans-serif;
 }
 
-#botonDescarga {
+#recomendaciones-contenedor button {
     position: absolute;
     left: 35%;
     bottom: 4%;
@@ -248,7 +280,7 @@ main {
     border-bottom: 1px solid white;
 }
 
-#botonDescarga:hover {
+#recomendaciones-contenedor button:hover {
     border-bottom: solid 1px white;
     background-color: #9440978c;
     color: #ffffff;
@@ -257,5 +289,204 @@ main {
 
 
 @media only screen and (min-width:768px) {
-    /* ayuda miguel angel */
+    header {
+        width: 100%;
+        position: fixed;
+        height: 70px;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(#260b4d 5%, #2f0d5aa3, transparent);
+    }
+
+    #logo-mobile {
+        width: 150px;
+        margin-right: 5%;
+    }
+
+    #logo-web {
+        width: 65px;
+    }
+
+    main {
+        padding-top: 8%;
+    }
+
+    .contenedor-pregunta {
+        font-size: 12px;
+        font-weight: 600;
+        min-height: 520px;
+        max-height: 520px;
+        min-width: 850px;
+        max-width: 850px;
+    }
+
+    .contenedor-pregunta h2 {
+        font-size: 17px;
+    }
+
+    .contenedor-respuestas {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        /* Dos filas con la misma altura */
+        grid-template-columns: repeat(2, 1fr);
+        /* Dos columnas con la misma anchura */
+        grid-column-gap: 20px;
+        /* Espacio entre las columnas */
+        padding: 3%;
+    }
+
+    .respuesta {
+
+        min-height: 70px;
+        max-height: 70px;
+
+    }
+
+    .contenedor-botones {
+        width: 100%;
+        height: auto;
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        justify-content: space-evenly;
+        position: absolute;
+        padding-bottom: 3%;
+    }
+
+    .contenedor-botones button {
+        border: none;
+        font-weight: 600;
+        padding: 1%;
+        border-radius: 20px;
+        background-color: transparent;
+        color: white;
+        border-bottom: 1px solid white;
+    }
+
+    .contenedor-botones button:hover {
+        border-bottom: solid 1px white;
+        background-color: #9440978c;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .popup {
+        align-self: center;
+        justify-content: center;
+        background-color: whitesmoke;
+        color: #de4e44e2;
+        font-weight: 600;
+        position: absolute;
+        min-width: 50%;
+        max-width: 50%;
+        padding: 2%;
+        border-radius: 10px;
+        font-size: 15px;
+        text-align: justify;
+        height: 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: solid 2px white;
+    }
+
+    #cerrarBtn {
+        width: 10%;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 10%;
+        right: 5%;
+    }
+
+    /* ocultar contenedor resultado hasta que el usuario conteste el formulario entero */
+    #recomendaciones-contenedor {
+        display: none;
+        background-image: linear-gradient(360deg, #260b4d, #ce2020, #260b4d);
+        border: solid 1px #1c1546;
+        padding: 5%;
+        border-radius: 10px;
+        margin: 2%;
+        min-height: 520px;
+        max-height: 520px;
+        width: 80%;
+        color: white;
+        overflow-y: scroll;
+    }
+
+    .recomendacion-elemento {
+        cursor: pointer;
+        padding: 5%;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .recomendaciones {
+        display: none;
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+        padding: 3%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #recomendacionItem {
+        border: solid 2px red;
+        padding: 2%;
+
+    }
+
+    #recomendacionItem h2 {
+        font-family: "Merriweather", serif;
+        font-size: 17px;
+    }
+
+    #recomendacionItem p {
+        font-family: "Open Sans", sans-serif;
+        font-size: 15px;
+    }
+
+    #puntuacionMax {
+        color: white;
+        padding: 2%;
+        font-family: 'Merriweather', sans-serif;
+    }
+
+    #puntuacionUsuario {
+        color: white;
+        font-family: 'Merriweather', sans-serif;
+        padding-bottom: 2%;
+    }
+
+    #mensajeAdicional {
+        color: white;
+        position: fixed;
+        text-align: right;
+        top: 0%;
+        right: 6%;
+        width: 50%;
+        padding: 2%;
+        font-family: 'Merriweather', sans-serif;
+    }
+
+    #recomendaciones-contenedor button {
+        position: absolute;
+        left: 35%;
+        bottom: 4%;
+        border: none;
+        font-weight: 600;
+        padding: 2%;
+        border-radius: 20px;
+        background-color: transparent;
+        color: white;
+        border-bottom: 1px solid white;
+    }
+
+    #recomendaciones-contenedor button:hover {
+        border-bottom: solid 1px white;
+        background-color: #9440978c;
+        color: #ffffff;
+        cursor: pointer;
+    }
 }

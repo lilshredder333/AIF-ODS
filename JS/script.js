@@ -404,11 +404,10 @@ const ods = {
   ]
 }
 
-
 document.addEventListener("DOMContentLoaded", () => mostrarPregunta(indicePreguntaActual));
 
 let indicePreguntaActual = 0;
-let respuestasSeleccionadas = new Map();
+const respuestasSeleccionadas = new Map();
 let puntuacionTotal = 0;
 
 function mostrarPregunta(indice) {
@@ -423,18 +422,9 @@ function mostrarPregunta(indice) {
   const contenedorRespuestas = document.createElement("div");
   contenedorRespuestas.className = "contenedor-respuestas";
 
-  pregunta.respuesta.forEach((respuesta) => {
-    const divRespuesta = document.createElement("div");
-    divRespuesta.className = "respuesta";
-    divRespuesta.textContent = respuesta.texto;
-    divRespuesta.dataset.valor = respuesta.valor;
-    const preguntaActual = pregunta.texto;
-    if (respuestasSeleccionadas.has(preguntaActual) && respuestasSeleccionadas.get(preguntaActual) === respuesta.valor) {
-      divRespuesta.classList.add("active");
-    }
-    divRespuesta.addEventListener("click", () => seleccionarRespuesta(preguntaActual, respuesta.valor, divRespuesta));
-    contenedorRespuestas.appendChild(divRespuesta);
-  });
+  contenedorRespuestas.innerHTML = pregunta.respuesta.map(respuesta =>
+    `<div class="respuesta${respuestasSeleccionadas.has(pregunta.texto) && respuestasSeleccionadas.get(pregunta.texto) === respuesta.valor ? ' active' : ''}" data-valor="${respuesta.valor}" onclick="seleccionarRespuesta('${pregunta.texto}', ${respuesta.valor}, this)">${respuesta.texto}</div>`
+  ).join('');
 
   contenedorPregunta.appendChild(contenedorRespuestas);
   contenedorPreguntas.appendChild(contenedorPregunta);
@@ -450,7 +440,7 @@ function mostrarPregunta(indice) {
       if (respuestasSeleccionadas.has(pregunta.texto)) {
         mostrarPreguntaSiguiente();
       } else {
-        alert("Por favor, selecciona una respuesta antes de continuar.");
+        mostrarPopUp("Por favor, selecciona una respuesta antes de continuar.");
       }
     }
   });
@@ -462,6 +452,30 @@ function mostrarPregunta(indice) {
   contenedorBotones.appendChild(btnPrev);
   contenedorBotones.appendChild(btnNext);
   contenedorPreguntas.appendChild(contenedorBotones);
+}
+
+function crearBoton(texto, onClick) {
+  const btn = document.createElement("button");
+  btn.textContent = texto;
+  btn.addEventListener("click", onClick);
+  return btn;
+}
+
+function mostrarPopUp(mensaje) {
+  const popUp = document.createElement("div");
+  popUp.className = "popup";
+  popUp.textContent = mensaje;
+
+  const cerrarBtn = document.createElement("button");
+  cerrarBtn.textContent = "x";
+  cerrarBtn.id = 'cerrarBtn'
+  cerrarBtn.addEventListener("click", () => {
+    document.body.removeChild(popUp);
+  });
+
+  popUp.appendChild(cerrarBtn);
+
+  document.body.appendChild(popUp);
 }
 
 function mostrarPreguntaSiguiente() {
@@ -480,15 +494,8 @@ function mostrarPreguntaAnterior() {
   }
 }
 
-function crearBoton(texto, onClick) {
-  const btn = document.createElement("button");
-  btn.textContent = texto;
-  btn.addEventListener("click", onClick);
-  return btn;
-}
-
 function seleccionarRespuesta(pregunta, valorRespuesta, divRespuesta) {
-  const respuestaText = divRespuesta.textContent.trim(); 
+  const respuestaText = divRespuesta.textContent.trim();
   if (divRespuesta.classList.contains('active')) {
     divRespuesta.classList.remove('active');
     puntuacionTotal -= valorRespuesta;
@@ -511,41 +518,25 @@ function mostrarResultado() {
   contenedorResultado.style.display = "block";
   contenedorResultado.innerHTML = "";
 
-  const botonDescarga = document.createElement('button');
-  botonDescarga.id = 'botonDescarga';
-  botonDescarga.textContent = 'Descargar resultados';
-  botonDescarga.addEventListener('click', descargarResultados);
+  const botonDescarga = crearBoton('Descargar resultados', descargarResultados);
+  botonDescarga.id = botonDescarga;
   contenedorResultado.appendChild(botonDescarga);
 
   const puntuacionUsuario = document.createElement('div');
   puntuacionUsuario.textContent = `Tu puntuación total: ${puntuacionTotal}`;
-  puntuacionUsuario.id = 'puntuacionUsuario'
+  puntuacionUsuario.id = 'puntuacionUsuario';
   contenedorResultado.appendChild(puntuacionUsuario);
 
-  const puntuacionMaxima = document.createElement('div');
-  puntuacionMaxima.id = 'puntuacionMax'
-  puntuacionMaxima.textContent = `Puntuación Máxima: 150`;
-  contenedorResultado.appendChild(puntuacionMaxima);
+  contenedorResultado.appendChild(document.createElement('div')).textContent = `Puntuación Máxima: 150`;
 
   generarRecomendaciones(contenedorResultado);
 
-  // Mostrar mensaje adicional
-  const mensajeAdicional = obtenerMensajeAdicional(puntuacionTotal);
-  const contenedorMensajeAdicional = document.createElement('div');
-  contenedorMensajeAdicional.id = 'mensajeAdicional';
-  contenedorMensajeAdicional.appendChild(mensajeAdicional);
-  contenedorResultado.appendChild(contenedorMensajeAdicional);
+  contenedorResultado.appendChild(document.createElement('div')).innerHTML = obtenerMensajeAdicional(puntuacionTotal);
 
-  const recomendacionElementos = document.querySelectorAll('.recomendacion-elemento');
-
-  recomendacionElementos.forEach((recomendacionElemento) => {
+  document.querySelectorAll('.recomendacion-elemento').forEach((recomendacionElemento) => {
     recomendacionElemento.addEventListener('click', () => {
       const recomendaciones = recomendacionElemento.querySelector('.recomendaciones');
-      if (recomendaciones.style.display === 'none' || recomendaciones.style.display === '') {
-        recomendaciones.style.display = 'flex';
-      } else {
-        recomendaciones.style.display = 'none';
-      }
+      recomendaciones.style.display = recomendaciones.style.display === 'none' || recomendaciones.style.display === '' ? 'flex' : 'none';
     });
   });
 }
@@ -561,9 +552,7 @@ const obtenerMensajeAdicional = (puntuacionTotal) => {
   const puntuaciones = Object.keys(mensajes).map(Number);
   const puntuacion = puntuaciones.find(score => puntuacionTotal < score) || 140;
 
-  const mensajeAdicional = document.createElement('div');
-  mensajeAdicional.innerHTML = mensajes[puntuacion];
-  return mensajeAdicional;
+  return `<div id="mensajeAdicional">${mensajes[puntuacion]}</div>`;
 };
 
 
@@ -583,30 +572,16 @@ function generarRecomendaciones(contenedorResultado) {
         const recomendacionItem = document.createElement('div');
         recomendacionItem.id = 'recomendacionItem';
 
-        // Crear elemento <h2> para el título de la recomendación
-        const tituloRecomendacion = document.createElement('h2');
-        tituloRecomendacion.textContent = `Recomendación ${index + 1}:`;
-        // Agregar elemento <h2> al elemento recomendacionItem
-        recomendacionItem.appendChild(tituloRecomendacion);
+        recomendacionItem.innerHTML = `<h2>Recomendación ${index + 1}:</h2><p>${recomendacion.texto}</p>`;
 
-        // Crear elemento <p> para el texto de la recomendación
-        const textoRecomendacion = document.createElement('p');
-        textoRecomendacion.textContent = recomendacion.texto;
-        // Agregar elemento <p> al elemento recomendacionItem
-        recomendacionItem.appendChild(textoRecomendacion);
-
-        // Agregar recomendacionItem al contenedor de recomendaciones
         recomendacionesContainer.appendChild(recomendacionItem);
       });
-      // Agregar recomendacionesContainer al elemento recomendacionElemento
       recomendacionElemento.appendChild(recomendacionesContainer);
     }
 
-    // Agregar recomendacionElemento al contenedorResultado
     contenedorResultado.appendChild(recomendacionElemento);
   });
 }
-
 
 function calcularCantidadRecomendaciones(puntuacionTotal) {
   let cantidadRecomendaciones = 0;
@@ -623,17 +598,15 @@ function calcularCantidadRecomendaciones(puntuacionTotal) {
 }
 
 function descargarResultados() {
-  // Crear un elemento <a> para la descarga
   const enlaceDescarga = document.createElement('a');
-  enlaceDescarga.href = obtenerContenidoDescargable(); // Llama a una función para obtener el contenido a descargar
-  enlaceDescarga.download = 'resultados_y_recomendaciones.txt'; // Nombre del archivo a descargar
-  enlaceDescarga.click(); // Simula un clic en el enlace para iniciar la descarga
+  enlaceDescarga.href = URL.createObjectURL(new Blob([obtenerContenidoDescargable()], { type: 'text/plain' }));
+  enlaceDescarga.download = 'resultados_y_recomendaciones.txt';
+  enlaceDescarga.click();
 }
 
 function obtenerContenidoDescargable() {
   let contenido = `Puntuación total: ${puntuacionTotal}\n\n`;
 
-  // Agregar las recomendaciones
   ods.pregunta.forEach((pregunta) => {
     contenido += `Pregunta: ${pregunta.texto}\n`;
     const cantidadRecomendaciones = calcularCantidadRecomendaciones(puntuacionTotal);
@@ -644,5 +617,5 @@ function obtenerContenidoDescargable() {
     contenido += '\n';
   });
 
-  return URL.createObjectURL(new Blob([contenido], { type: 'text/plain' }));
+  return contenido;
 }
