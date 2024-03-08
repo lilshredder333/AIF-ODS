@@ -46,7 +46,7 @@ const ods = {
         { texto: "Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar." }
       ]
     },
-   /*  {
+    {
       texto: "4. ¿Realizan charlas y conferencias para asegurar la eliminación de estereotipos de género en el desarrollo diario de las actividades de vuestra empresa?",
       respuesta: [
         { texto: "a. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género.", valor: 0 },
@@ -400,7 +400,7 @@ const ods = {
         { texto: "Revisar y actualizar regularmente los procesos de reclutamiento y selección para eliminar sesgos y prejuicios." },
         { texto: "Ofrecer formación y capacitación a los responsables de selección para promover prácticas justas e inclusivas." }
       ]
-    } */
+    }
   ]
 }
 
@@ -514,20 +514,22 @@ function mostrarResultado() {
   contenedorPreguntas.innerHTML = "";
 
   const contenedorResultado = document.getElementById("recomendaciones-contenedor");
-  contenedorResultado.style.display = "block";
+  contenedorResultado.style.display = "flex";
   contenedorResultado.innerHTML = "";
 
   const botonDescarga = crearBoton('Descargar resultados', descargarResultados);
-  botonDescarga.id = botonDescarga;
+  botonDescarga.id = 'botonDescarga';
   contenedorResultado.appendChild(botonDescarga);
 
   const puntuacionUsuario = document.createElement('div');
-  puntuacionUsuario.textContent = `Tu puntuación total: ${puntuacionTotal}`;
+  puntuacionUsuario.textContent = `Puntuación total: ${puntuacionTotal}`;
   puntuacionUsuario.id = 'puntuacionUsuario';
   contenedorResultado.appendChild(puntuacionUsuario);
 
-  contenedorResultado.appendChild(document.createElement('div')).innerHTML = `Puntuación Máxima: 150`;
-
+  contenedorResultado.appendChild(document.createElement('div')).id = 'puntuacionMax';
+  var puntuacionMax = document.getElementById('puntuacionMax');
+  puntuacionMax.innerHTML = `Puntuación Máxima: 150`;
+  
   generarRecomendaciones(contenedorResultado);
 
   contenedorResultado.appendChild(document.createElement('div')).innerHTML = obtenerMensajeAdicional(puntuacionTotal);
