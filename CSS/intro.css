@@ -194,7 +194,7 @@ main {
 @media only screen and (min-width:768px) {
 
     #personaje {
-        width: 20%;
+        width: 30%;
         position: absolute;
         top: 35%;
         animation: movimientoPersonaje 2s ease-in-out;
@@ -209,7 +209,7 @@ main {
         }
     
         100% {
-            left: 25%;
+            left: 20%;
             opacity: 1;
         }
     }
@@ -220,7 +220,7 @@ main {
     
     #bocadillo {
         width: 20%;
-        right: 35%;
+        right: 32%;
     }
     
     @keyframes fadeBocadillo {
@@ -280,7 +280,6 @@ main {
     #botonAdelante {
         width: 20%;
         height: 45px;
-
     }
 
 }

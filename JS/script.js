@@ -440,7 +440,7 @@ function mostrarPregunta(indice) {
       if (respuestasSeleccionadas.has(pregunta.texto)) {
         mostrarPreguntaSiguiente();
       } else {
-        mostrarPopUp("Por favor, selecciona una respuesta antes de continuar.");
+        mostrarPopUp();
       }
     }
   });
@@ -461,10 +461,10 @@ function crearBoton(texto, onClick) {
   return btn;
 }
 
-function mostrarPopUp(mensaje) {
+function mostrarPopUp() {
   const popUp = document.createElement("div");
   popUp.className = "popup";
-  popUp.textContent = mensaje;
+  popUp.innerHTML = ` <p> Por favor, selecciona una respuesta antes de continuar. </p>`;
 
   const cerrarBtn = document.createElement("button");
   cerrarBtn.textContent = "x";
