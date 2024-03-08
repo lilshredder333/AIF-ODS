@@ -46,7 +46,7 @@ const ods = {
         { texto: "Realizar un manual de lenguaje no sexista que cualquier empleado o empleada podrá utilizar." }
       ]
     },
-    {
+   /*  {
       texto: "4. ¿Realizan charlas y conferencias para asegurar la eliminación de estereotipos de género en el desarrollo diario de las actividades de vuestra empresa?",
       respuesta: [
         { texto: "a. No realizamos charlas o conferencias para asegurar la eliminación de estereotipos de género.", valor: 0 },
@@ -400,7 +400,7 @@ const ods = {
         { texto: "Revisar y actualizar regularmente los procesos de reclutamiento y selección para eliminar sesgos y prejuicios." },
         { texto: "Ofrecer formación y capacitación a los responsables de selección para promover prácticas justas e inclusivas." }
       ]
-    }
+    } */
   ]
 }
 
@@ -507,7 +507,6 @@ function seleccionarRespuesta(pregunta, valorRespuesta, divRespuesta) {
     respuestasSeleccionadas.set(pregunta, valorRespuesta);
   }
 
-  mostrarPuntuacionTotal(puntuacionTotal);
 }
 
 function mostrarResultado() {
@@ -527,7 +526,7 @@ function mostrarResultado() {
   puntuacionUsuario.id = 'puntuacionUsuario';
   contenedorResultado.appendChild(puntuacionUsuario);
 
-  contenedorResultado.appendChild(document.createElement('div')).textContent = `Puntuación Máxima: 150`;
+  contenedorResultado.appendChild(document.createElement('div')).innerHTML = `Puntuación Máxima: 150`;
 
   generarRecomendaciones(contenedorResultado);
 
@@ -563,7 +562,7 @@ function generarRecomendaciones(contenedorResultado) {
 
     const recomendacionElemento = document.createElement('div');
     recomendacionElemento.classList.add('recomendacion-elemento');
-    recomendacionElemento.textContent = `Pregunta: ${pregunta.texto}`;
+    recomendacionElemento.innerHTML = `<h1>Pregunta: ${pregunta.texto}</h1>`;
 
     if (recomendaciones.length > 0) {
       const recomendacionesContainer = document.createElement('div');

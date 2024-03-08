@@ -193,18 +193,8 @@ main {
 
 @media only screen and (min-width:768px) {
 
-    body{
-        background-image: url('../IMG/bg-pc.jpg');
-        background-repeat: no-repeat;
-        object-fit: cover;
-    }
-
-    #bg-pic {
-        display: none;
-    }
-    
     #personaje {
-        width: 60%;
+        width: 20%;
         position: absolute;
         top: 35%;
         animation: movimientoPersonaje 2s ease-in-out;
@@ -219,7 +209,7 @@ main {
         }
     
         100% {
-            left: 3%;
+            left: 25%;
             opacity: 1;
         }
     }
@@ -229,17 +219,8 @@ main {
     }
     
     #bocadillo {
-        width: 50%;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 10%;
-        right: 0%;
-        animation: fadeBocadillo 2s ease-in-out;
-        animation-fill-mode: both;
-        animation-delay: 1s;
-        opacity: 0;
+        width: 20%;
+        right: 35%;
     }
     
     @keyframes fadeBocadillo {
@@ -257,38 +238,6 @@ main {
     
     }
     
-    #mensajeIntro1 {
-        width: 60%;
-        height: auto;
-        font-size: 13px;
-        text-align: center;
-        font-weight: 600;
-        position: absolute;
-        top: 30%;
-        align-self: center;
-        justify-content: center;
-        animation: mensaje1 2.5s ease-in-out;
-        animation-fill-mode: both;
-        animation-delay: 2s;
-        opacity: 0;
-    }
-    
-    #mensajeIntro2{
-        width: 60%;
-        height: auto;
-        font-size: 13px;
-        text-align: center;
-        font-weight: 600;
-        position: absolute;
-        top: 30%;
-        align-self: center;
-        justify-content: center;
-        animation: mensaje2 3s ease-in-out;
-        animation-fill-mode: both;
-        animation-delay: 4s;
-        opacity: 0;
-    }
-    
     
     @keyframes mensaje1{
     
@@ -296,12 +245,12 @@ main {
             opacity: 1;
         }
     
-        75%{
+        50%{
             opacity: 1;
         }
     
-        95%{
-            opacity: 0.5;
+        75%{
+            opacity: 1;
         }
     
         100%{
@@ -316,7 +265,7 @@ main {
         }
     
         25%{
-            opacity: 0.75;
+            opacity: 1;
         }
     
         35%{
@@ -329,34 +278,9 @@ main {
     }
     
     #botonAdelante {
-        width: 50%;
-        background-color: #FF1D0D;
+        width: 20%;
         height: 45px;
-        border-radius: 20px;
-        display: flex;
-        position: absolute;
-        bottom: -5%;
-        animation: movimientoBoton 2s ease-in-out;
-        animation-fill-mode: both;
-    }
-    
-    @keyframes movimientoBoton {
-        0% {
-            bottom: 10%;
-            opacity: 0;
-        }
-    
-        100% {
-            opacity: 1;
-            bottom: 10%;
-        }
-    }
-    
-    #botonAdelante button {
-        background-color: transparent;
-        border: none;
-        width: 100%;
-        text-align: center;
+
     }
 
 }
