@@ -119,9 +119,8 @@ main {
     font-style: normal;
     text-align: center;
     min-height: 420px;
-    max-height: 490px;
-    min-width: 320px;
-    max-width: 400px;
+    max-height: 80vh;
+    width: 90%;
     align-self: center;
 }
 
