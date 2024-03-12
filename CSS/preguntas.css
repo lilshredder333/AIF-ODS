@@ -92,7 +92,7 @@ main {
     justify-content: center;
     text-align: justify;
     position: fixed;
-    top: 75px;
+    top: 100px;
 }
 
 .contenedor-pregunta {
@@ -181,7 +181,7 @@ main {
     color: white;
     border-bottom: solid 1px white;
     backdrop-filter: blur(10px);
-    background-color: #270b4d81;
+    background-color: #270b4dc9;
     color: #ffffff;
     cursor: pointer;
 }
@@ -198,14 +198,14 @@ main {
     background-color: whitesmoke;
     color: #de4e44e2;
     font-weight: 600;
-    position: absolute;
-    min-width: 50%;
-    max-width: 50%;
+    position: fixed;
+    top: 250px;
     padding: 2%;
     border-radius: 10px;
     font-size: 15px;
     text-align: justify;
-    height: 15%;
+    height: 250px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     border: solid 2px white;
@@ -233,12 +233,15 @@ main {
     padding: 5%;
     border-radius: 10px;
     margin: 2%;
-    min-height: 520px;
-    max-height: 520px;
-    width: 80%;
+    min-height: 420px;
+    max-height: 80vh;
+    width: 90%;
     color: white;
     overflow-y: scroll;
     flex-direction: column;
+    position: fixed;
+    top: 150px;
+
 }
 
 .recomendacion-elemento {
