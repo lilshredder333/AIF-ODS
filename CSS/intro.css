@@ -30,9 +30,9 @@ main {
 }
 
 #personaje {
-    width: 60%;
+    width: 250px;
     position: absolute;
-    top: 35%;
+    bottom: 80px;
     animation: movimientoPersonaje 2s ease-in-out;
     animation-fill-mode: both;
     opacity: 0;
@@ -55,7 +55,7 @@ main {
 }
 
 #bocadillo {
-    width: 50%;
+    width: 250px;
     position: absolute;
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@ main {
     border-radius: 20px;
     display: flex;
     position: absolute;
-    bottom: -5%;
+    bottom: -50px;
     animation: movimientoBoton 2s ease-in-out;
     animation-fill-mode: both;
 }
@@ -194,7 +194,7 @@ main {
 @media only screen and (min-width:768px) {
 
     #personaje {
-        width: 30%;
+        width: 300px;
         position: absolute;
         top: 35%;
         animation: movimientoPersonaje 2s ease-in-out;
@@ -219,8 +219,8 @@ main {
     }
     
     #bocadillo {
-        width: 20%;
-        right: 32%;
+        width: 300px;
+        right: 35px;
     }
     
     @keyframes fadeBocadillo {
