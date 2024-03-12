@@ -120,7 +120,8 @@ main {
     text-align: center;
     min-height: 420px;
     max-height: 490px;
-    width: 90%;
+    min-width: 320px;
+    max-width: 400px;
     align-self: center;
 }
 
