@@ -393,7 +393,8 @@ main {
         font-weight: 600;
         min-height: 470px;
         max-height: 400px;
-        min-width: 500px;
+        min-width: 550px;
+        max-width: 550px;
         display: flex;
         position: fixed;
         top: 100px;
